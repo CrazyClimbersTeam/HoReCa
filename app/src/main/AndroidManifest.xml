@@ -2,20 +2,49 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.crazyclimbersteam.horeca" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <permission android:name="com.example.adudka.myapplication.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.example.adudka.myapplication.permission.C2D_MESSAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
+        <meta-data
+            android:name="com.jeapie.key"
+            android:value="GwEXXP_oNrR03DsScvUO0rvbVo00sXCT" />
+        <meta-data
+            android:name="com.jeapie.secret"
+            android:value="xt3yEXOvKt5md4GD2AL5luPPh2YkLtZn" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name="com.jeapie.GCMReceiver">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+                <category android:name="com.crazyclimbersteam.horeca"/>
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.jeapie.EventsSenderService"/>
+
     </application>
 
 </manifest>
