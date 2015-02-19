@@ -38,7 +38,6 @@ public class RegistrationFragment extends Fragment {
     @InjectView(R.id.user_avatar) ImageView mUserAvatar;
     @InjectView(R.id.user_email) EditText mUserEmail;
     @InjectView(R.id.user_name) EditText mUserName;
-    @InjectView(R.id.confirm_btn) Button mConfirmbtn;
 
     ChoosePictureDialog mTakePictureDialog;
 
@@ -72,6 +71,11 @@ public class RegistrationFragment extends Fragment {
     @OnClick(R.id.user_avatar)
     public void setUserAvatar(ImageView imageView){
         mTakePictureDialog.show(getFragmentManager(), null);
+    }
+
+    @OnClick(R.id.skip_btn)
+    public void skipRegistration(Button button){
+        startMainActivity();
     }
 
     private void startMainActivity(){

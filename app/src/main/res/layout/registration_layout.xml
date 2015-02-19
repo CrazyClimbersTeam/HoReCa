@@ -42,4 +42,12 @@
         android:layout_marginTop="40dp"
         android:text="Confirm"/>
 
+    <Button
+        android:id="@+id/skip_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="Skip registration"/>
+
 </LinearLayout>
