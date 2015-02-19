@@ -1,4 +1,4 @@
-package com.crazyclimbersteam.horeca;
+package com.crazyclimbersteam.horeca.activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.crazyclimbersteam.horeca.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.jeapie.JeapieAPI;
@@ -18,6 +19,8 @@ public class MainActivity extends ActionBarActivity {
     private final static String SENDER_ID = "660774978335";
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
+    JeapieAPI jeapieAPI;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +31,12 @@ public class MainActivity extends ActionBarActivity {
         // Check device for Play Services APK.
         if (checkPlayServices()) {
             // Get GCM token asynchronously in background
-            JeapieAPI.getInstance().registerTokenInBackground(this, SENDER_ID);
+            jeapieAPI = JeapieAPI.getInstance();
+            jeapieAPI.registerTokenInBackground(this, SENDER_ID);
+            jeapieAPI.emitAddTagEvent("Coffee");
         }
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_layout);
     }
 
     @Override

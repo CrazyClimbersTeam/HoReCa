@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="app_statusbar_background_color">#095b13</color>
+    <color name="app_toolbar_background_color">#3ab54a</color>
+
+</resources>

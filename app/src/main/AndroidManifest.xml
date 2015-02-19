@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.crazyclimbersteam.horeca" >
 
+    uses-feature android:name="android.hardware.camera"
+    android:required="true" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -15,7 +18,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ferret"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
 
@@ -27,13 +30,26 @@
             android:value="xt3yEXOvKt5md4GD2AL5luPPh2YkLtZn" />
 
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:name=".activities.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activities.StartActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.App.Base">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
         <receiver android:name="com.jeapie.GCMReceiver">
             <intent-filter>
