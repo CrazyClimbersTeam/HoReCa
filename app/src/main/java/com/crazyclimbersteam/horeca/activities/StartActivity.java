@@ -18,7 +18,7 @@ public class StartActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.main_layout);
+        setContentView(R.layout.start_layout);
 
         getSupportFragmentManager().beginTransaction().add(R.id.main_container, new SplashFragment()).commit();
 
