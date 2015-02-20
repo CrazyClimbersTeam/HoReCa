@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.crazyclimbersteam.horeca.R;
-import com.crazyclimbersteam.horeca.activitity.MainActivity;
+import com.crazyclimbersteam.horeca.activity.MainActivity;
 import com.crazyclimbersteam.horeca.dialog.ChoosePictureDialog;
 import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
 import com.soundcloud.android.crop.Crop;
@@ -33,6 +33,7 @@ public class RegistrationFragment extends BaseFragment {
     public static final String REGISTRATION_PREFS = "REGISTRATION_PREFS";
     public static final String USER_NAME = "USER_NAME";
     public static final String USER_EMAIL = "USER_EMAIL";
+    public static final String USER_AVATAR_URI = "USER_AVATAR_URI ";
 
     @InjectView(R.id.user_avatar)
     ImageView mUserAvatar;
@@ -42,11 +43,13 @@ public class RegistrationFragment extends BaseFragment {
     EditText mUserName;
 
     ChoosePictureDialog mTakePictureDialog;
+    SharedPreferences mRegistrationPrefs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTakePictureDialog = new ChoosePictureDialog();
+        mRegistrationPrefs = getActivity().getSharedPreferences(REGISTRATION_PREFS, Context.MODE_PRIVATE);
     }
 
     @Nullable
@@ -60,8 +63,8 @@ public class RegistrationFragment extends BaseFragment {
     @OnClick(R.id.confirm_btn)
     public void confirmData(Button confirmBtn) {
         if (mUserEmail.getText().length() != 0 && mUserName.getText().length() != 0) {
-            SharedPreferences registrationPrefs = getActivity().getSharedPreferences(REGISTRATION_PREFS, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = registrationPrefs.edit();
+            // save data in prefs
+            SharedPreferences.Editor editor = mRegistrationPrefs.edit();
             editor.putString(USER_NAME, mUserName.getText().toString());
             editor.putString(USER_EMAIL, mUserEmail.getText().toString());
             editor.apply();
@@ -71,7 +74,7 @@ public class RegistrationFragment extends BaseFragment {
     }
 
     @OnClick(R.id.user_avatar)
-    public void setUserAvatar(ImageView imageView) {
+    public void setUserAvatar(de.hdodenhof.circleimageview.CircleImageView imageView) {
         mTakePictureDialog.show(getFragmentManager(), null);
     }
 
@@ -108,6 +111,10 @@ public class RegistrationFragment extends BaseFragment {
 
     private void handleCrop(int resultCode, Intent result) {
         if (resultCode == Activity.RESULT_OK) {
+            SharedPreferences.Editor editor = mRegistrationPrefs.edit();
+            editor.putString(USER_AVATAR_URI, Crop.getOutput(result).toString());
+            editor.apply();
+
             mUserAvatar.setImageURI(Crop.getOutput(result));
         } else if (resultCode == Crop.RESULT_ERROR) {
             Toast.makeText(getActivity(), Crop.getError(result).getMessage(), Toast.LENGTH_SHORT).show();

@@ -7,5 +7,4 @@ import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
  */
 public class CategoriesFragment extends BaseFragment {
     public static String TAG = getFragmentTag(CategoriesFragment.class);
-
 }

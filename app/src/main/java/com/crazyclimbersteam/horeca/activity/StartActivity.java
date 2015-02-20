@@ -1,4 +1,4 @@
-package com.crazyclimbersteam.horeca.activitity;
+package com.crazyclimbersteam.horeca.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,8 @@ import com.crazyclimbersteam.horeca.fragment.welcome.RegistrationFragment;
 import com.crazyclimbersteam.horeca.fragment.welcome.SplashFragment;
 
 public class StartActivity extends FragmentActivity {
-    public static final int DELAY_MILLIS = 1000;
+
+    public static final int DELAY_MILLIS = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

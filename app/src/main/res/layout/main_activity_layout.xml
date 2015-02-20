@@ -4,27 +4,27 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    >
+    android:fitsSystemWindows="true">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:alpha="0.8"
-            android:background="@color/app_toolbar_background_color"
-            />
+            android:background="@color/app_main_color"/>
+
         <com.crazyclimbersteam.horeca.tools.ParallaxView
             xmlns:parallax="http://schemas.android.com/apk/res-auto"
             android:id="@+id/parallax_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            parallax:parallaxValue="@dimen/parallax_value"
-            >
+            parallax:parallaxValue="@dimen/parallax_value">
+
             <!-- remove me -->
             <ImageView
                 android:layout_width="300dp"
@@ -40,12 +40,12 @@
                 />
         </com.crazyclimbersteam.horeca.tools.ParallaxView>
     </LinearLayout>
+
     <fragment
         android:id="@+id/navigation_drawer"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:layout_marginTop="?android:attr/actionBarSize"
         android:name="com.crazyclimbersteam.horeca.fragment.base.drawer.NavigationMenuFragment"
         />
 </android.support.v4.widget.DrawerLayout>

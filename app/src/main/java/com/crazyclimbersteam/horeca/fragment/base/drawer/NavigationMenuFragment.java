@@ -16,7 +16,7 @@ import com.crazyclimbersteam.horeca.R;
 public class NavigationMenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View content = inflater.inflate(R.layout.navigation_menu, null);
+        View content = inflater.inflate(R.layout.drawer_layout, null);
         return content;
     }
 }

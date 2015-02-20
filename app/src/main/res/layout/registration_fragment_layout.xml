@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_toolbar_background_color"
+    android:background="@color/app_main_color"
+    android:orientation="vertical"
     tools:context=".StartActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_avatar"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="100dp"
         android:layout_gravity="center"
-        android:src="@drawable/cartoon_ferret"/>
+        android:layout_marginTop="100dp"
+        android:src="@drawable/cartoon_ferret" />
 
     <EditText
         android:id="@+id/user_email"
@@ -21,9 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:singleLine="true"
         android:hint="please type your e-mail"
-        android:inputType="textWebEmailAddress" />
+        android:inputType="textWebEmailAddress"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/user_name"
@@ -32,7 +32,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:hint="please type your name"
-        android:inputType="text"/>
+        android:inputType="text" />
 
     <Button
         android:id="@+id/confirm_btn"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:text="Confirm"/>
+        android:text="Confirm" />
 
     <Button
         android:id="@+id/skip_btn"
@@ -48,6 +48,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:text="Skip registration"/>
+        android:text="Skip registration" />
 
 </LinearLayout>
