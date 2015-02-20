@@ -69,7 +69,7 @@ public class RegistrationFragment extends Fragment {
     }
 
     @OnClick(R.id.user_avatar)
-    public void setUserAvatar(ImageView imageView){
+    public void setUserAvatar(de.hdodenhof.circleimageview.CircleImageView imageView){
         mTakePictureDialog.show(getFragmentManager(), null);
     }
 

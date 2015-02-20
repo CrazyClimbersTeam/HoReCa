@@ -7,7 +7,7 @@
     android:background="@color/app_toolbar_background_color"
     tools:context=".StartActivity">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_avatar"
         android:layout_width="100dp"
         android:layout_height="100dp"
