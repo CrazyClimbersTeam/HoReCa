@@ -1,11 +1,10 @@
-package com.crazyclimbersteam.horeca.fragments;
+package com.crazyclimbersteam.horeca.fragment.welcome;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -17,8 +16,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.crazyclimbersteam.horeca.R;
-import com.crazyclimbersteam.horeca.activities.MainActivity;
-import com.crazyclimbersteam.horeca.dialogs.ChoosePictureDialog;
+import com.crazyclimbersteam.horeca.activitity.MainActivity;
+import com.crazyclimbersteam.horeca.dialog.ChoosePictureDialog;
+import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
 import com.soundcloud.android.crop.Crop;
 
 import java.io.File;
@@ -27,17 +27,19 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class RegistrationFragment extends Fragment {
-
-    public static String TAG = RegistrationFragment.class.getSimpleName();
+public class RegistrationFragment extends BaseFragment {
+    public static String TAG = getFragmentTag(RegistrationFragment.class);
 
     public static final String REGISTRATION_PREFS = "REGISTRATION_PREFS";
     public static final String USER_NAME = "USER_NAME";
     public static final String USER_EMAIL = "USER_EMAIL";
 
-    @InjectView(R.id.user_avatar) ImageView mUserAvatar;
-    @InjectView(R.id.user_email) EditText mUserEmail;
-    @InjectView(R.id.user_name) EditText mUserName;
+    @InjectView(R.id.user_avatar)
+    ImageView mUserAvatar;
+    @InjectView(R.id.user_email)
+    EditText mUserEmail;
+    @InjectView(R.id.user_name)
+    EditText mUserName;
 
     ChoosePictureDialog mTakePictureDialog;
 
@@ -50,14 +52,14 @@ public class RegistrationFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.registration_layout, container, false);
+        View view = inflater.inflate(R.layout.registration_fragment_layout, container, false);
         ButterKnife.inject(this, view);
         return view;
     }
 
     @OnClick(R.id.confirm_btn)
-    public void confirmData(Button confirmBtn){
-        if (mUserEmail.getText().length() != 0 && mUserName.getText().length() != 0){
+    public void confirmData(Button confirmBtn) {
+        if (mUserEmail.getText().length() != 0 && mUserName.getText().length() != 0) {
             SharedPreferences registrationPrefs = getActivity().getSharedPreferences(REGISTRATION_PREFS, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = registrationPrefs.edit();
             editor.putString(USER_NAME, mUserName.getText().toString());
@@ -69,21 +71,22 @@ public class RegistrationFragment extends Fragment {
     }
 
     @OnClick(R.id.user_avatar)
-    public void setUserAvatar(ImageView imageView){
+    public void setUserAvatar(ImageView imageView) {
         mTakePictureDialog.show(getFragmentManager(), null);
     }
 
     @OnClick(R.id.skip_btn)
-    public void skipRegistration(Button button){
+    public void skipRegistration(Button button) {
         startMainActivity();
     }
 
-    private void startMainActivity(){
+    private void startMainActivity() {
         Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
     }
 
-    @Override public void onDestroyView() {
+    @Override
+    public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.reset(this);
     }

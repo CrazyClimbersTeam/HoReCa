@@ -1,4 +1,4 @@
-package com.crazyclimbersteam.horeca.dialogs;
+package com.crazyclimbersteam.horeca.dialog;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
