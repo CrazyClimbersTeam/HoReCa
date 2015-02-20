@@ -1,13 +1,26 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Base.Theme.AppCompat.Light">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
         <item name="colorPrimary">@color/app_statusbar_background_color</item>
         <item name="colorPrimaryDark">@color/app_statusbar_background_color</item>
         <item name="colorAccent">@color/app_statusbar_background_color</item>
         <item name="android:textColorPrimary">#FFF</item>
     </style>
+
+    <style name="AppTheme_ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="titleTextStyle">@style/AppTheme_ActionBar_Title</item>
+
+    </style>
+
+    <style name="AppTheme_ActionBar_Title" parent="Base.TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:paddingLeft">72dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
 
     <style name="Theme.App.Base" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowNoTitle">true</item>
