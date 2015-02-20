@@ -30,7 +30,6 @@ public class MainActivity extends ActionBarActivity {
 
     private final static String TAG = MainActivity.class.getSimpleName();
 
-    //TODO MOVE IT TO SOME CONSTANTS OR UTILS MB?
     private final static String SENDER_ID = "660774978335";
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
