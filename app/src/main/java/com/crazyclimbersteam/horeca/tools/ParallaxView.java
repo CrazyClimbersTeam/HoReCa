@@ -12,6 +12,7 @@ import com.crazyclimbersteam.horeca.R;
  * @author Mirash
  */
 public class ParallaxView extends FrameLayout {
+
     private static final float DEFAULT_PARALLAX_VALUE = 0.25f;
 
     private float mParallaxValue;

@@ -20,6 +20,7 @@ import com.crazyclimbersteam.horeca.tools.ParallaxView;
 import com.crazyclimbersteam.horeca.tools.ScreenController;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.maps.MapFragment;
 import com.jeapie.JeapieAPI;
 
 import static com.crazyclimbersteam.horeca.utils.LogUtils.log;
@@ -37,10 +38,8 @@ public class MainActivity extends ActionBarActivity {
 
     private Toolbar mToolbar;
     private ParallaxView mParallaxView;
-    private ScreenController mScreenController;
 
-    //TODO WHAT IS IT FOR
-    private JeapieAPI mJeapieAPI;
+    private ScreenController mScreenController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +49,7 @@ public class MainActivity extends ActionBarActivity {
         // Check device for Play Services APK.
         if (checkPlayServices()) {
             // Get GCM token asynchronously in background
-            mJeapieAPI = JeapieAPI.getInstance();
-            mJeapieAPI.registerTokenInBackground(this, SENDER_ID);
-            mJeapieAPI.emitAddTagEvent("Coffee");
+            JeapieAPI.getInstance().registerTokenInBackground(this, SENDER_ID);
         }
 
         mParallaxView = (ParallaxView) findViewById(R.id.parallax_content);
@@ -122,7 +119,18 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+
+
         int id = item.getItemId();
+
+        switch (item.getItemId()){
+            case R.id.action_search:
+                return true;
+            case R.id.action_map:
+                getFragmentManager().beginTransaction().replace(R.id.screen_container, new MapFragment()).commit();
+        }
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
             return true;

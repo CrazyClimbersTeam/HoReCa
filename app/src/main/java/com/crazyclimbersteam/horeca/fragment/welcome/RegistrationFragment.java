@@ -28,6 +28,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 
 public class RegistrationFragment extends BaseFragment {
+
     public static String TAG = getFragmentTag(RegistrationFragment.class);
 
     public static final String REGISTRATION_PREFS = "REGISTRATION_PREFS";

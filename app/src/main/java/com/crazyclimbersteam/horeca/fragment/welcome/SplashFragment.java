@@ -12,6 +12,7 @@ import com.larvalabs.svgandroid.SVG;
 import com.larvalabs.svgandroid.SVGParser;
 
 public class SplashFragment extends BaseFragment {
+
     public static String TAG = getFragmentTag(SplashFragment.class);
 
     @Override

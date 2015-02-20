@@ -8,6 +8,7 @@ import static com.crazyclimbersteam.horeca.utils.LogUtils.log;
  * @author Mirash
  */
 public class HorecApplication extends Application {
+
     private static HorecApplication instance;
 
     public static HorecApplication getInstance() {
