@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.crazyclimbersteam.horeca.R;
+import com.crazyclimbersteam.horeca.activity.MainActivity;
+import com.crazyclimbersteam.horeca.menu.views.MenuItemsContainer;
 
 
 /**
@@ -14,9 +16,16 @@ import com.crazyclimbersteam.horeca.R;
  */
 //TODO implement me
 public class NavigationMenuFragment extends Fragment {
+    private MenuItemsContainer mMenuItemContainer;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.drawer_layout, null);
+        mMenuItemContainer = (MenuItemsContainer) rootView.findViewById(R.id.menu_item_container);
         return rootView;
+    }
+
+    public void setItemClickListener(MenuItemClickListener itemClickListener) {
+        mMenuItemContainer.setMenuItemClickListener(itemClickListener);
     }
 }

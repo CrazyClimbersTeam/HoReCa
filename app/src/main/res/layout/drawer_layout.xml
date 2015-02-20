@@ -5,12 +5,14 @@
     android:layout_height="match_parent"
     android:layout_gravity="start"
     android:background="@android:color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/fon">
+        android:background="@drawable/fon"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
@@ -50,4 +52,14 @@
             android:src="@drawable/cartoon_ferret"
             />
     </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <com.crazyclimbersteam.horeca.menu.views.MenuItemsContainer
+            android:id="@+id/menu_item_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </ScrollView>
 </LinearLayout>

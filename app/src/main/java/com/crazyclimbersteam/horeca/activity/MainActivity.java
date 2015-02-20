@@ -16,6 +16,10 @@ import android.view.View;
 
 import com.crazyclimbersteam.horeca.HorecApplication;
 import com.crazyclimbersteam.horeca.R;
+import com.crazyclimbersteam.horeca.menu.MenuItemClickListener;
+import com.crazyclimbersteam.horeca.menu.NavigationMenuFragment;
+import com.crazyclimbersteam.horeca.menu.model.MenuNavigable;
+import com.crazyclimbersteam.horeca.menu.views.MenuItemView;
 import com.crazyclimbersteam.horeca.tools.ParallaxView;
 import com.crazyclimbersteam.horeca.tools.ScreenController;
 import com.google.android.gms.common.ConnectionResult;
@@ -26,7 +30,7 @@ import com.jeapie.JeapieAPI;
 import static com.crazyclimbersteam.horeca.utils.LogUtils.log;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements MenuItemClickListener {
 
     private final static String TAG = MainActivity.class.getSimpleName();
 
@@ -37,6 +41,7 @@ public class MainActivity extends ActionBarActivity {
 
     private Toolbar mToolbar;
     private ParallaxView mParallaxView;
+    private NavigationMenuFragment mNavigationMenuFragment;
 
     private ScreenController mScreenController;
 
@@ -55,8 +60,14 @@ public class MainActivity extends ActionBarActivity {
         mToolbar = getActionBarToolbar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        initDrawerToggle();
+        initDrawer();
         initScreenController();
+    }
+
+    private void initDrawer() {
+        mNavigationMenuFragment = (NavigationMenuFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
+        mNavigationMenuFragment.setItemClickListener(this);
+        initDrawerToggle();
     }
 
     private void initDrawerToggle() {
@@ -120,10 +131,9 @@ public class MainActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
 
-
         int id = item.getItemId();
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_search:
                 return true;
             case R.id.action_map:
@@ -156,5 +166,10 @@ public class MainActivity extends ActionBarActivity {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void onMenuItemClick(MenuNavigable menuNavigable, MenuItemView menuItem) {
+        log("onMenuItemClick: " + menuNavigable.getTag());
     }
 }
