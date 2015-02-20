@@ -16,8 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:alpha="0.8"
-            android:background="@color/app_main_color"/>
-
+            android:background="@color/app_main_color"
+            />
         <com.crazyclimbersteam.horeca.tools.ParallaxView
             xmlns:parallax="http://schemas.android.com/apk/res-auto"
             android:id="@+id/parallax_content"
@@ -45,6 +45,6 @@
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:name="com.crazyclimbersteam.horeca.fragment.base.drawer.NavigationMenuFragment"
+        android:name="com.crazyclimbersteam.horeca.menu.NavigationMenuFragment"
         />
 </android.support.v4.widget.DrawerLayout>

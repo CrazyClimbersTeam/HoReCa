@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?><!--NavigationDrawer container-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/navigation_drawer"
-    android:layout_width="300dp"
-    android:layout_height="match_parent"
-    android:layout_gravity="start"
-    android:background="@android:color/white"
-    android:orientation="vertical">
-
+              android:id="@+id/navigation_drawer"
+              android:layout_width="300dp"
+              android:layout_height="match_parent"
+              android:layout_gravity="start"
+              android:background="@android:color/white"
+              android:orientation="vertical"
+    >
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:background="@drawable/fon">
-
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                    android:background="@drawable/fon"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:orientation="vertical">
-
+            android:orientation="vertical"
+            >
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
@@ -28,8 +28,8 @@
                 android:text="Andrew Dudka"
                 android:textColor="#ffffff"
                 android:textSize="14sp"
-                android:textStyle="bold" />
-
+                android:textStyle="bold"
+                />
             <TextView
                 android:id="@+id/email"
                 android:layout_width="wrap_content"
@@ -39,17 +39,16 @@
                 android:text="damvol@ukr.net"
                 android:textColor="#ffffff"
                 android:textSize="14sp"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                />
         </LinearLayout>
-
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/circleView"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="38dp"
-            android:src="@drawable/cartoon_ferret" />
-
+            android:src="@drawable/cartoon_ferret"
+            />
     </RelativeLayout>
-
 </LinearLayout>

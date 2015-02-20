@@ -29,6 +29,7 @@ public class MainActivity extends ActionBarActivity {
 
     private final static String TAG = MainActivity.class.getSimpleName();
 
+    //TODO MOVE IT TO SOME CONSTANTS OR UTILS MB?
     private final static String SENDER_ID = "660774978335";
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
@@ -36,17 +37,16 @@ public class MainActivity extends ActionBarActivity {
 
     private Toolbar mToolbar;
     private ParallaxView mParallaxView;
-    JeapieAPI mJeapieAPI;
     private ScreenController mScreenController;
+
+    //TODO WHAT IS IT FOR
+    private JeapieAPI mJeapieAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.main_activity_layout);
-
         JeapieAPI.init(this);
-
         // Check device for Play Services APK.
         if (checkPlayServices()) {
             // Get GCM token asynchronously in background
