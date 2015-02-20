@@ -46,6 +46,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:layout_marginTop="?android:attr/actionBarSize"
-        android:name="com.crazyclimbersteam.horeca.fragment.base.drawer.NavigationMenuFragment"
+        android:name="com.crazyclimbersteam.horeca.menu.NavigationMenuFragment"
         />
 </android.support.v4.widget.DrawerLayout>

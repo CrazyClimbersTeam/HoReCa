@@ -1,4 +1,4 @@
-package com.crazyclimbersteam.horeca.fragment.base.drawer;
+package com.crazyclimbersteam.horeca.menu;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import com.crazyclimbersteam.horeca.R;
 public class NavigationMenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View content = inflater.inflate(R.layout.navigation_menu, null);
-        return content;
+        View rootView = inflater.inflate(R.layout.navigation_menu, null);
+        return rootView;
     }
 }

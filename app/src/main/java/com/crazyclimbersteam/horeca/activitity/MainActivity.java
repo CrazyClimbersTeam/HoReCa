@@ -16,14 +16,17 @@ import android.view.View;
 import com.crazyclimbersteam.horeca.HorecApplication;
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.tools.ParallaxView;
+import com.crazyclimbersteam.horeca.tools.ScreenController;
 
 import static com.crazyclimbersteam.horeca.utils.LogUtils.log;
 
 
 public class MainActivity extends ActionBarActivity {
     private static final float MENU_HEIGHT = HorecApplication.getInstance().getResources().getDimension(R.dimen.navigation_drawer_width);
+
     private Toolbar mToolbar;
     private ParallaxView mParallaxView;
+    private ScreenController mScreenController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class MainActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         initDrawerToggle();
+        initScreenController();
     }
 
     private void initDrawerToggle() {
@@ -62,6 +66,10 @@ public class MainActivity extends ActionBarActivity {
         };
         drawerLayout.setDrawerListener(drawerToggle);
         drawerToggle.syncState();
+    }
+
+    private void initScreenController() {
+        mScreenController = new ScreenController(getSupportFragmentManager());
     }
 
     protected Toolbar getActionBarToolbar() {
