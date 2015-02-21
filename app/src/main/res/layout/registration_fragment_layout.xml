@@ -16,35 +16,35 @@
         android:src="@drawable/cartoon_ferret" />
 
     <EditText
-        android:id="@+id/user_email"
-        android:layout_width="wrap_content"
+        style="@style/Registration.EditText"
+        android:id="@+id/user_name"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:hint="please type your e-mail"
+        android:hint="@string/name"
+        android:inputType="text" />
+
+    <EditText
+        style="@style/Registration.EditText"
+        android:id="@+id/user_email"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:hint="@string/email"
         android:inputType="textWebEmailAddress"
         android:singleLine="true" />
 
-    <EditText
-        android:id="@+id/user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:hint="please type your name"
-        android:inputType="text" />
-
     <Button
+        style="@style/Registration.Button"
         android:id="@+id/confirm_btn"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:text="Confirm" />
+        android:text="@string/confirm" />
 
     <Button
+        style="@style/Registration.Button"
         android:id="@+id/skip_btn"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
