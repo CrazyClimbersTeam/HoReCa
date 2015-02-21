@@ -23,8 +23,7 @@ public class ScreenController {
         log("navigateToScreenFragment");
         if (!fragment.getFragmentTag().equals(currentScreenTag)) {
             log("navigateToScreenFragment success");
-            fragmentManager.beginTransaction().replace(screenContainerId, fragment).
-                    commitAllowingStateLoss();
+            fragmentManager.beginTransaction().replace(screenContainerId, fragment).commit();
             currentScreenTag = fragment.getFragmentTag();
         }
     }

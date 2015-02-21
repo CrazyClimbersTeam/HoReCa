@@ -183,10 +183,7 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
 
     public void navigateToScreenFragment(BaseFragment fragment) {
         log("navigateToScreenFragment");
-        if (!fragment.getFragmentTag().equals(mCurrentScreenTag)) {
-            log("navigateToScreenFragment success");
-            getSupportFragmentManager().beginTransaction().replace(SCREEN_CONTAINER_ID, fragment).
-                    commitAllowingStateLoss();
-        }
+        mScreenController.navigateToScreenFragment(fragment);
+        mDrawerLayout.closeDrawers();
     }
 }
