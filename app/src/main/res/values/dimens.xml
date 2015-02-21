@@ -13,4 +13,8 @@
     <dimen name="details_screen_header_height">250dp</dimen>
     <dimen name="details_screen_tab_height">50dp</dimen>
     <dimen name="details_screen_tab_screen_size">18dp</dimen>
+
+    <dimen name="grid_item_width">180dp</dimen>
+    <dimen name="grid_item_height">180dp</dimen>
+    <dimen name="grid_item_spacing">2dp</dimen>
 </resources>

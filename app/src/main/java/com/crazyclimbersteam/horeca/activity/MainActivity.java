@@ -3,7 +3,6 @@ package com.crazyclimbersteam.horeca.activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,7 +17,7 @@ import android.view.View;
 import com.crazyclimbersteam.horeca.HorecApplication;
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
-import com.crazyclimbersteam.horeca.fragment.settings.SettingsFragment;
+import com.crazyclimbersteam.horeca.fragment.main.CategoriesFragment;
 import com.crazyclimbersteam.horeca.menu.MenuItemClickListener;
 import com.crazyclimbersteam.horeca.menu.NavigationMenuFragment;
 import com.crazyclimbersteam.horeca.menu.model.MenuNavigable;
@@ -44,13 +43,11 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
     public static final int SCREEN_CONTAINER_ID = R.id.screen_container;
 
     private Toolbar mToolbar;
-    private ParallaxView mParallaxView;
+    private ParallaxView containerView;
     private NavigationMenuFragment mNavigationMenuFragment;
 
     private ScreenController mScreenController;
-    private String mCurrentScreenTag;
     private DrawerLayout mDrawerLayout;
-
 
 
     @Override
@@ -64,13 +61,14 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
             JeapieAPI.getInstance().registerTokenInBackground(this, SENDER_ID);
         }
 
-        mParallaxView = (ParallaxView) findViewById(R.id.parallax_content);
+        containerView = (ParallaxView) findViewById(SCREEN_CONTAINER_ID);
         mToolbar = getActionBarToolbar();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         initDrawer();
         initScreenController();
+        navigateToScreenFragment(CategoriesFragment.newInstance());
     }
 
     private void initDrawer() {
@@ -88,7 +86,7 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-                mParallaxView.setOffset(MENU_HEIGHT * slideOffset);
+                containerView.setOffset(MENU_HEIGHT * slideOffset);
             }
 
             @Override
@@ -108,7 +106,7 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
     }
 
     private void initScreenController() {
-        mScreenController = new ScreenController(getSupportFragmentManager());
+        mScreenController = new ScreenController(getSupportFragmentManager(), SCREEN_CONTAINER_ID);
     }
 
     protected Toolbar getActionBarToolbar() {
@@ -181,16 +179,11 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
     public void onMenuItemClick(MenuNavigable<MainActivity> menuNavigable, MenuItemView menuItem) {
         log("onMenuItemClick: " + menuNavigable.getTag());
         menuNavigable.handleItemClick(this);
-        mCurrentScreenTag = menuNavigable.getTag();
     }
 
     public void navigateToScreenFragment(BaseFragment fragment) {
         log("navigateToScreenFragment");
-        if (!fragment.getFragmentTag().equals(mCurrentScreenTag)) {
-            log("navigateToScreenFragment success");
-            getSupportFragmentManager().beginTransaction().replace(SCREEN_CONTAINER_ID, fragment).
-                    commitAllowingStateLoss();
-            mDrawerLayout.closeDrawers();
-        }
+        mScreenController.navigateToScreenFragment(fragment);
+        mDrawerLayout.closeDrawers();
     }
 }

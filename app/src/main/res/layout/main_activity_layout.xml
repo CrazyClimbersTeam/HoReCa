@@ -19,23 +19,13 @@
             android:alpha="0.8"
             android:background="@color/app_main_color" />
 
+        <!-- fragment screens will be here -->
         <com.crazyclimbersteam.horeca.tools.ParallaxView
-            android:id="@+id/parallax_content"
+            android:id="@+id/screen_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            parallax:parallaxValue="@dimen/parallax_value">
-            <!-- remove me -->
-            <ImageView
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_gravity="center"
-                android:src="@drawable/forret_splash_layout" />
-            <!-- fragment screens will be here -->
-            <FrameLayout
-                android:id="@+id/screen_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.crazyclimbersteam.horeca.tools.ParallaxView>
+            parallax:parallaxValue="@dimen/parallax_value" />
+
     </LinearLayout>
 
     <fragment
