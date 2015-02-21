@@ -1,16 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/navigation_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_main_color">
+    android:layout_gravity="start"
+    android:background="@android:color/white"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="200dp"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="#0f0"
-        android:layout_gravity="center_horizontal"
-        android:text="SETTINGS"
-        android:textSize="20sp"/>
+        android:background="@drawable/fon">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:singleLine="true"
+                android:text="Andrew Dudka"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/cartoon_ferret" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/category_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/settings_margin_left"
+            android:layout_marginTop="@dimen/settings_margin_between_view"
+            android:text="Категорії сповіщень"
+            android:textColor="#000"
+            android:textSize="@dimen/app_main_text_size"/>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/category_tv"
+            android:layout_toRightOf="@+id/category_tv"
+            android:orientation="horizontal"
+            android:gravity="right">
+
+            <Spinner
+                android:id="@+id/category_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/settings_layout_margin_right"
+                android:gravity="right" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tag_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/category_tv"
+            android:layout_below="@id/category_tv"
+            android:layout_marginTop="40dp"
+            android:text="Теги сповіщень"
+            android:textColor="#000"
+            android:textSize="@dimen/app_main_text_size" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/tag_tv"
+            android:layout_toRightOf="@+id/tag_tv"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/tag_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginRight="@dimen/settings_layout_margin_right"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/actions_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/category_tv"
+            android:layout_below="@id/tag_tv"
+            android:layout_marginTop="@dimen/settings_layout_margin_right"
+            android:text="Сповіщення про акційні пропозиції"
+            android:textColor="#000"
+            android:textSize="@dimen/app_main_text_size" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/settings_db_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/actions_tv"
+            android:layout_marginRight="@dimen/settings_layout_margin_right"
+            android:layout_toRightOf="@id/actions_tv"
+            android:textSize="@dimen/app_main_text_size"
+            android:theme="@style/SwitchStyle" />
+
+        <TextView
+            android:id="@+id/notification_count_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/category_tv"
+            android:layout_below="@id/actions_tv"
+            android:layout_marginTop="@dimen/settings_layout_margin_right"
+            android:text="Кількість сповіщень в день"
+            android:textColor="#000"
+            android:textSize="@dimen/app_main_text_size" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/notification_count_tv"
+            android:layout_toRightOf="@+id/notification_count_tv"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/notification_count_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginRight="@dimen/settings_layout_margin_right"/>
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>

@@ -18,4 +18,10 @@
     <dimen name="grid_item_width">180dp</dimen>
     <dimen name="grid_item_height">180dp</dimen>
     <dimen name="grid_item_spacing">2dp</dimen>
+
+    <!--Settings-->
+    <dimen name="settings_margin_left">20dp</dimen>
+    <dimen name="settings_margin_between_view">40dp</dimen>
+    <dimen name="settings_layout_margin_right">40dp</dimen>
+    <dimen name="app_main_text_size">16sp</dimen>
 </resources>

@@ -20,4 +20,48 @@
     <string name="details_feedback_tab_title">Feedback</string>
     <string name="details_photos_tab_title">Photo</string>
 
+    <string-array name="categories">
+        <item>Всі заклади</item>
+        <item>Ресторини</item>
+        <item>Кафетерії</item>
+        <item>Фаст фуд</item>
+        <item>Піцерії</item>
+        <item>Сушібари</item>
+        <item>Стейк бари</item>
+        <item>Паби</item>
+        <item>Кальян бари</item>
+        <item>Нічні клуби</item>
+        <item>Екзотична кухня</item>
+    </string-array>
+
+    <string-array name="tags">
+        <item>Пиво</item>
+        <item>Алкоголь</item>
+        <item>Піца</item>
+        <item>Суші</item>
+        <item>Кальян</item>
+        <item>Салат</item>
+        <item>Бургер</item>
+        <item>Стейк</item>
+        <item>Круасан</item>
+        <item>Тістечкр</item>
+        <item>Шоколад</item>
+        <item>Борщ</item>
+        <item>Картопля</item>
+        <item>Кава</item>
+        <item>Коктейль</item>
+        <item>Вареники</item>
+        <item>Напої</item>
+        <item>Кола</item>
+        <item>Горішки</item>
+        <item>Гостра їжа</item>
+    </string-array>
+
+    <string-array name="notifications_count">
+        <item>0 "-" 1</item>
+        <item>2 "-" 5</item>
+        <item>5 "-" 10</item>
+        <item> ">" 10</item>
+    </string-array>
+
 </resources>
