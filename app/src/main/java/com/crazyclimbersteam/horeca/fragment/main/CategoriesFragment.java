@@ -2,7 +2,6 @@ package com.crazyclimbersteam.horeca.fragment.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,10 @@ import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.adapter.MainCategoriesAdapter;
 import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
 import com.crazyclimbersteam.horeca.net.pojo.Category;
+
+import org.lucasr.twowayview.TwoWayLayoutManager;
+import org.lucasr.twowayview.widget.GridLayoutManager;
+import org.lucasr.twowayview.widget.SpacingItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +28,7 @@ public class CategoriesFragment extends BaseFragment {
     public static final int COLUMNS_COUNT = 2;
 
     private RecyclerView gridView;
+    private MainCategoriesAdapter adapter;
 
     public static CategoriesFragment newInstance() {
         return new CategoriesFragment();
@@ -44,12 +48,12 @@ public class CategoriesFragment extends BaseFragment {
     private void initGridView(View root) {
         gridView = (RecyclerView) root.findViewById(R.id.main_grid);
         gridView.setHasFixedSize(true);
-        GridLayoutManager manager = new GridLayoutManager(getActivity().getBaseContext(), COLUMNS_COUNT);
-        manager.offsetChildrenHorizontal(getResources().getDimensionPixelSize(R.dimen.grid_item_spacing));
-        manager.offsetChildrenVertical(getResources().getDimensionPixelSize(R.dimen.grid_item_spacing));
+        GridLayoutManager manager = new GridLayoutManager(TwoWayLayoutManager.Orientation.VERTICAL, COLUMNS_COUNT, COLUMNS_COUNT);
         gridView.setLayoutManager(manager);
-        MainCategoriesAdapter adapter = new MainCategoriesAdapter(getActivity().getBaseContext());
+        adapter = new MainCategoriesAdapter(getActivity().getBaseContext());
         gridView.setAdapter(adapter);
+        int spacing = getActivity().getResources().getDimensionPixelSize(R.dimen.grid_item_spacing);
+        gridView.addItemDecoration(new SpacingItemDecoration(spacing, spacing));
         List<Category> list = new ArrayList<Category>() {
             {
                 add(new Category("url", "Category 1"));
