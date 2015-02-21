@@ -5,10 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.MapFragment;
+
 /**
  * Created by Марковка on 21.02.2015.
  */
-public class NewMapFragment  extends MapFragment {
+public class NewMapFragment extends MapFragment {
 
     @Override
     public View onCreateView(LayoutInflater mInflater, ViewGroup arg1, Bundle arg2) {

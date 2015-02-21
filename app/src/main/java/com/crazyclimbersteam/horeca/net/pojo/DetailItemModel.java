@@ -1,18 +1,58 @@
-package com.crazyclimbersteam.horeca.fragment.detail;
+package com.crazyclimbersteam.horeca.net.pojo;
 
 /**
  * Created by Марковка on 21.02.2015.
  */
 public class DetailItemModel {
 
+    private String id;
     private String name;
+    private String address;
     private float rating;
     private float distance;
+    private String lng;
+    private String lat;
 
     public DetailItemModel(String name, float rating, float distance) {
         this.name = name;
         this.rating = rating;
         this.distance = distance;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setDistance(float distance) {
+        this.distance = distance;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
     }
 
     public String getName() {

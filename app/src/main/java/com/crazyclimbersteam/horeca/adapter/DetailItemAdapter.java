@@ -9,7 +9,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.crazyclimbersteam.horeca.R;
-import com.crazyclimbersteam.horeca.fragment.detail.DetailItemModel;
+import com.crazyclimbersteam.horeca.net.pojo.DetailItemModel;
 
 import java.util.List;
 
@@ -22,11 +22,16 @@ public class DetailItemAdapter extends BaseAdapter {
     private List<DetailItemModel> items;
     private LayoutInflater inflater;
 
-    public DetailItemAdapter(Context context, List<DetailItemModel> items) {
+    public DetailItemAdapter(Context context) {
         this.context = context;
-        this.items = items;
+//        this.items = items;
         inflater = LayoutInflater.from(context);
 
+    }
+
+    public void setDataToAdapter(List<DetailItemModel> list){
+        items = list;
+        notifyDataSetChanged();
     }
 
     @Override

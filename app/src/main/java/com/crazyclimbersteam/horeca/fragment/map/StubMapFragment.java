@@ -16,7 +16,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 /**
  * Created by adudka on 20.02.2015.
  */
-public class MapFragment extends SupportMapFragment {
+public class StubMapFragment extends SupportMapFragment {
 
     GoogleMap mapView;
 

@@ -20,6 +20,7 @@ import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
 import com.crazyclimbersteam.horeca.fragment.detail.RequestSearchFragment;
 import com.crazyclimbersteam.horeca.fragment.main.CategoriesFragment;
+import com.crazyclimbersteam.horeca.fragment.map.NewMapFragment;
 import com.crazyclimbersteam.horeca.menu.MenuItemClickListener;
 import com.crazyclimbersteam.horeca.menu.NavigationMenuFragment;
 import com.crazyclimbersteam.horeca.menu.model.MenuNavigable;
@@ -28,13 +29,17 @@ import com.crazyclimbersteam.horeca.tools.ParallaxView;
 import com.crazyclimbersteam.horeca.tools.ScreenController;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.jeapie.JeapieAPI;
 
 import static com.crazyclimbersteam.horeca.utils.LogUtils.log;
 
 
-public class MainActivity extends ActionBarActivity implements MenuItemClickListener<MainActivity>, CategoriesFragment.CategoriesFragmentHost {
+public class MainActivity extends ActionBarActivity implements MenuItemClickListener<MainActivity>, CategoriesFragment.CategoriesFragmentHost, OnMapReadyCallback {
 
     private final static String TAG = MainActivity.class.getSimpleName();
 
@@ -50,6 +55,8 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
 
     private ScreenController mScreenController;
     private DrawerLayout mDrawerLayout;
+    private NewMapFragment mapFragment;
+    private GoogleMap map;
 
 
     @Override
@@ -157,6 +164,14 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
             case R.id.action_search:
                 return true;
             case R.id.action_map:
+                mapFragment = new NewMapFragment();
+                mapFragment.getMapAsync(this);
+                getFragmentManager().beginTransaction().replace(R.id.screen_container, mapFragment).commit();
+        }
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_search) {
+            return true;
                 getFragmentManager().beginTransaction().replace(R.id.screen_container, new MapFragment()).commit();
                 return true;
         }
@@ -199,5 +214,18 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
     @Override
     public void onCategorySelected(String categoryName) {
         navigateToScreenFragment(RequestSearchFragment.newInstance(categoryName));
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        LatLng sydney = new LatLng(-33.867, 151.206);
+
+        googleMap.setMyLocationEnabled(true);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+
+        googleMap.addMarker(new MarkerOptions()
+                .title("Sydney")
+                .snippet("The most populous city in Australia.")
+                .position(sydney));
     }
 }
