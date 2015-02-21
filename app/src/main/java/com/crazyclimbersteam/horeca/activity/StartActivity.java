@@ -22,7 +22,6 @@ public class StartActivity extends FragmentActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //TODO it may easily crash
                 getSupportFragmentManager().beginTransaction().
                         setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit).
                             replace(R.id.main_container, new RegistrationFragment(), RegistrationFragment.TAG).commitAllowingStateLoss();

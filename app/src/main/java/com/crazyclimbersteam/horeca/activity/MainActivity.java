@@ -3,6 +3,7 @@ package com.crazyclimbersteam.horeca.activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,6 +17,8 @@ import android.view.View;
 
 import com.crazyclimbersteam.horeca.HorecApplication;
 import com.crazyclimbersteam.horeca.R;
+import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
+import com.crazyclimbersteam.horeca.fragment.settings.SettingsFragment;
 import com.crazyclimbersteam.horeca.menu.MenuItemClickListener;
 import com.crazyclimbersteam.horeca.menu.NavigationMenuFragment;
 import com.crazyclimbersteam.horeca.menu.model.MenuNavigable;
@@ -30,7 +33,7 @@ import com.jeapie.JeapieAPI;
 import static com.crazyclimbersteam.horeca.utils.LogUtils.log;
 
 
-public class MainActivity extends ActionBarActivity implements MenuItemClickListener {
+public class MainActivity extends ActionBarActivity implements MenuItemClickListener<MainActivity> {
 
     private final static String TAG = MainActivity.class.getSimpleName();
 
@@ -38,12 +41,14 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
     private static final float MENU_HEIGHT = HorecApplication.getInstance().getResources().getDimension(R.dimen.navigation_drawer_width);
+    public static final int SCREEN_CONTAINER_ID = R.id.screen_container;
 
     private Toolbar mToolbar;
     private ParallaxView mParallaxView;
     private NavigationMenuFragment mNavigationMenuFragment;
 
     private ScreenController mScreenController;
+    private String mCurrentScreenTag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,7 +174,19 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
     }
 
     @Override
-    public void onMenuItemClick(MenuNavigable menuNavigable, MenuItemView menuItem) {
+    public void onMenuItemClick(MenuNavigable<MainActivity> menuNavigable, MenuItemView menuItem) {
         log("onMenuItemClick: " + menuNavigable.getTag());
+        menuNavigable.handleItemClick(this);
+        mCurrentScreenTag = menuNavigable.getTag();
+
+    }
+
+    public void navigateToScreenFragment(BaseFragment fragment) {
+        log("navigateToScreenFragment");
+        if (!fragment.getFragmentTag().equals(mCurrentScreenTag)) {
+            log("navigateToScreenFragment success");
+            getSupportFragmentManager().beginTransaction().replace(SCREEN_CONTAINER_ID, fragment).
+                    commitAllowingStateLoss();
+        }
     }
 }
