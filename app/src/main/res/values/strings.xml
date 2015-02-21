@@ -15,8 +15,7 @@
     <string name="map">Map</string>
     <string name="phone">Phone</string>
     <string name="address">Address</string>
-    <string name="menu">Menu</string>
-    <string name="order">Order</string>
+    <string name="menu">See the menu</string>
     <string name="add_feedback">Add feedback</string>
 
     <string name="details_info_tab_title">Info</string>

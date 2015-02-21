@@ -19,6 +19,9 @@
     <dimen name="grid_item_height">180dp</dimen>
     <dimen name="grid_item_spacing">2dp</dimen>
 
+    <dimen name="detail_info_item_padding">5dp</dimen>
+    <dimen name="detail_info_page_padding">10dp</dimen>
+
     <!--Settings-->
     <dimen name="settings_margin_left">20dp</dimen>
     <dimen name="settings_margin_between_view">40dp</dimen>

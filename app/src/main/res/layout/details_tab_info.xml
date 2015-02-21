@@ -1,18 +1,17 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        >
+        android:padding="@dimen/detail_info_page_padding">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/details_info_title"
                 android:layout_width="wrap_content"
@@ -20,9 +19,9 @@
                 android:textSize="@dimen/details_tab_info_title_text_size"
                 android:textColor="@color/detail_info_title_text_color"
                 android:layout_marginLeft="16dp"
-                android:text="MyTitle"
-                android:layout_centerVertical="true"
-                />
+                android:text="HoReC Bar"
+                android:layout_centerVertical="true" />
+
             <RatingBar
                 android:id="@+id/details_info_rating_bar"
                 android:layout_width="wrap_content"
@@ -31,51 +30,60 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
                 android:isIndicator="true"
-                style="@android:style/Widget.Holo.RatingBar.Small"
-                />
+                style="@android:style/Widget.Holo.RatingBar.Small" />
         </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            >
+            android:layout_marginTop="10dp">
+
             <LinearLayout
                 android:layout_weight="0.6"
                 android:layout_width="0dp"
                 android:orientation="vertical"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
+
                 <com.crazyclimbersteam.horeca.activity.detail.fragment.info.view.DetailsInfoContactsView
                     android:id="@+id/details_info_contacts_view"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/detail_info_menu_section"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    />
-                <Button
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/details_info_menu_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:text="@string/menu"
-                    style="@style/Registration.Button"
-                    />
-                <Button
-                    android:id="@+id/details_info_order_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:text="@string/order"
-                    style="@style/Registration.Button"
-                    />
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:background="?attr/selectableItemBackground"
+                    android:padding="@dimen/detail_info_item_padding">
+
+                    <ImageView
+                        android:layout_weight="0.3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/menu_icon" />
+
+                    <TextView
+                        android:layout_weight="0.7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/menu" />
+
+                </LinearLayout>
+
             </LinearLayout>
+
             <com.crazyclimbersteam.horeca.activity.detail.fragment.info.view.SquaredImageView
                 android:id="@+id/details_info_map_preview"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="0.4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/map_icon"
-                />
+                android:src="@drawable/map_icon" />
         </LinearLayout>
+
         <TextView
             android:id="@+id/details_info_description"
             android:layout_marginTop="10dp"
@@ -90,7 +98,6 @@
         11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
         11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
         11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-        11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
-            />
+        11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111" />
     </LinearLayout>
 </ScrollView>

@@ -24,11 +24,10 @@ public class DetailsInfoFragment extends DetailsTabFragment {
     private ImageView mMapPreview;
     private DetailsInfoContactsView mContactsView;
     private View mMenuButton;
-    private View mOrderButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.details_tab_info, null);
+        View rootView = inflater.inflate(R.layout.details_tab_info, container, false);
         initViews(rootView);
         return rootView;
     }
@@ -40,23 +39,13 @@ public class DetailsInfoFragment extends DetailsTabFragment {
         mMapPreview = (ImageView) rootView.findViewById(R.id.details_info_map_preview);
         mContactsView = (DetailsInfoContactsView) rootView.findViewById(R.id.details_info_contacts_view);
         initMenuButton(rootView);
-        initOrderButton(rootView);
     }
 
     private void initMenuButton(View rootView) {
-        rootView.findViewById(R.id.details_info_menu_button).setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.detail_info_menu_section).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LogUtils.log("menu button on click");
-            }
-        });
-    }
-
-    private void initOrderButton(View rootView) {
-        rootView.findViewById(R.id.details_info_order_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LogUtils.log("order button on click");
             }
         });
     }
