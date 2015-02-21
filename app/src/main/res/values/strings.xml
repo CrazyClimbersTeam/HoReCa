@@ -14,4 +14,8 @@
     <string name="search">Search</string>
     <string name="map">Map</string>
 
+    <string name="details_info_tab_title">Info</string>
+    <string name="details_feedback_tab_title">Feedback</string>
+    <string name="details_photos_tab_title">Photo</string>
+
 </resources>

@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.content.res.Resources;
 
 import com.crazyclimbersteam.horeca.R;
-import com.crazyclimbersteam.horeca.activity.DetailsActivity;
 import com.crazyclimbersteam.horeca.activity.MainActivity;
+import com.crazyclimbersteam.horeca.activity.detail.DetailsActivity;
 import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
 import com.crazyclimbersteam.horeca.fragment.main.CategoriesFragment;
 import com.crazyclimbersteam.horeca.fragment.settings.SettingsFragment;

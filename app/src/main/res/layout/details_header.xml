@@ -4,14 +4,15 @@
         android:id="@+id/details_parallax_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/details_screen_header_parallax_margin_left"
-        android:layout_marginRight="@dimen/details_screen_header_parallax_margin_right"
+        android:layout_marginRight="@dimen/details_screen_header_parallax_margin_negative"
+        android:layout_marginLeft="@dimen/details_screen_header_parallax_margin_negative"
         >
         <ImageView
             android:id="@+id/details_header_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/test_image_space"
+            android:scaleType="fitXY"
             />
     </com.crazyclimbersteam.horeca.tools.ParallaxView>
 </merge>
