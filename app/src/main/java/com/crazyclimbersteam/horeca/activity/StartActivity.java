@@ -25,7 +25,7 @@ public class StartActivity extends FragmentActivity {
                 //TODO it may easily crash
                 getSupportFragmentManager().beginTransaction().
                         setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit).
-                            replace(R.id.main_container, new RegistrationFragment(), RegistrationFragment.TAG).commit();
+                            replace(R.id.main_container, new RegistrationFragment(), RegistrationFragment.TAG).commitAllowingStateLoss();
             }
         }, DELAY_MILLIS);
     }
