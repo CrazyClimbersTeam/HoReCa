@@ -12,7 +12,7 @@ import com.crazyclimbersteam.horeca.fragment.welcome.SplashFragment;
 
 public class StartActivity extends FragmentActivity {
 
-    public static final int DELAY_MILLIS = 3000;
+    public static final int DELAY_MILLIS = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

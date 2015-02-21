@@ -47,6 +47,7 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
     private NavigationMenuFragment mNavigationMenuFragment;
 
     private ScreenController mScreenController;
+    private DrawerLayout mDrawerLayout;
 
 
     @Override
@@ -62,6 +63,7 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
 
         containerView = (ParallaxView) findViewById(SCREEN_CONTAINER_ID);
         mToolbar = getActionBarToolbar();
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         initDrawer();
@@ -180,6 +182,11 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
     }
 
     public void navigateToScreenFragment(BaseFragment fragment) {
-        mScreenController.navigateToScreenFragment(fragment);
+        log("navigateToScreenFragment");
+        if (!fragment.getFragmentTag().equals(mCurrentScreenTag)) {
+            log("navigateToScreenFragment success");
+            getSupportFragmentManager().beginTransaction().replace(SCREEN_CONTAINER_ID, fragment).
+                    commitAllowingStateLoss();
+        }
     }
 }
