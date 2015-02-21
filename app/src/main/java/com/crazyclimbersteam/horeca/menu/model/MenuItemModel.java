@@ -57,28 +57,6 @@ public enum MenuItemModel implements MenuNavigable<MainActivity> {
         public String getTag() {
             return SettingsFragment.TAG;
         }
-    },
-    DETAILS_ACTIVITY {
-        @Override
-        public String getTitle(Resources resources) {
-            return "DETAILS ACTIVITY";
-        }
-
-        @Override
-        public int getIconResourceId() {
-            return R.drawable.cartoon_ferret;
-        }
-
-        @Override
-        public String getTag() {
-            return DetailsActivity.TAG;
-        }
-
-        @Override
-        public void handleItemClick(MainActivity activity) {
-            Intent intent = new Intent(activity, DetailsActivity.class);
-            activity.startActivity(intent);
-        }
     };
 
     @Override

@@ -73,7 +73,7 @@
                 android:layout_weight="0.4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/ferret"
+                android:src="@drawable/map_icon"
                 />
         </LinearLayout>
         <TextView
