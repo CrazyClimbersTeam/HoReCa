@@ -1,5 +1,7 @@
 package com.crazyclimbersteam.horeca.fragment.detail;
 
+import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.crazyclimbersteam.horeca.R;
+import com.crazyclimbersteam.horeca.activity.detail.DetailsActivity;
 import com.crazyclimbersteam.horeca.adapter.DetailItemAdapter;
 import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
 
@@ -57,7 +60,9 @@ public class RequestSearchFragment extends BaseFragment {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            //startActivity(new Intent(getActivity().this, Detail));
+            Intent callDetailIntent = new Intent(getActivity(), DetailsActivity.class);
+//            callDetailIntent.putExtra();
+            startActivity(callDetailIntent);
         }
     }
 }
