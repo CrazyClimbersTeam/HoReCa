@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.activity.detail.fragment.DetailsTabFragment;
 import com.crazyclimbersteam.horeca.activity.detail.fragment.info.view.DetailsInfoContactsView;
+import com.crazyclimbersteam.horeca.utils.LogUtils;
 
 /**
  * @author Mirash
@@ -38,6 +39,26 @@ public class DetailsInfoFragment extends DetailsTabFragment {
         mRatingBarView = (RatingBar) rootView.findViewById(R.id.details_info_rating_bar);
         mMapPreview = (ImageView) rootView.findViewById(R.id.details_info_map_preview);
         mContactsView = (DetailsInfoContactsView) rootView.findViewById(R.id.details_info_contacts_view);
+        initMenuButton(rootView);
+        initOrderButton(rootView);
+    }
+
+    private void initMenuButton(View rootView) {
+        rootView.findViewById(R.id.details_info_menu_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogUtils.log("menu button on click");
+            }
+        });
+    }
+
+    private void initOrderButton(View rootView) {
+        rootView.findViewById(R.id.details_info_order_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogUtils.log("order button on click");
+            }
+        });
     }
 
     //TODO

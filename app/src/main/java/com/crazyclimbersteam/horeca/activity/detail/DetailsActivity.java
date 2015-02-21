@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.activity.detail.adapter.DetailsAdapter;
+import com.crazyclimbersteam.horeca.activity.detail.dataprovider.DetailsDataProvider;
 import com.crazyclimbersteam.horeca.activity.detail.view.DetailContentView;
 import com.crazyclimbersteam.horeca.activity.detail.view.DetailHeaderView;
 
@@ -23,6 +24,8 @@ public class DetailsActivity extends FragmentActivity implements DetailContentVi
     private DetailContentView mContentView;
     private DetailHeaderView mHeaderView;
 
+    private DetailsDataProvider mDataProvider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +33,19 @@ public class DetailsActivity extends FragmentActivity implements DetailContentVi
         mContentView = (DetailContentView) findViewById(R.id.details_content);
         mHeaderView = (DetailHeaderView) findViewById(R.id.details_header);
         initContentView();
+        initDataProvider();
 //        initScrollContainer();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDataProvider.clear();
+    }
+
+    private void initDataProvider() {
+        mDataProvider = new DetailsDataProvider();
+        mDataProvider.updateAllData();
     }
 
     private void initContentView() {
@@ -66,5 +81,9 @@ public class DetailsActivity extends FragmentActivity implements DetailContentVi
     @Override
     public void onPageSelected(int position) {
 
+    }
+
+    public DetailsDataProvider getDataProvider() {
+        return mDataProvider;
     }
 }

@@ -1,0 +1,17 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+    >
+    <Button
+        android:id="@+id/details_tab_add_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/add_feedback"
+        />
+    <ListView
+        android:id="@+id/details_tab_feedback_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+</LinearLayout>
