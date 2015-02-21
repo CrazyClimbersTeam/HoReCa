@@ -1,7 +1,6 @@
 package com.crazyclimbersteam.horeca.fragment.detail;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,17 +16,31 @@ import java.util.List;
 /**
  * Created by Марковка on 21.02.2015.
  */
-public class DetailFragment extends Fragment {
+public class RequestSearchFragment extends Fragment {
 
     private ListView detailItemsList;
     private DetailItemAdapter adapter;
     private List<DetailItemModel> items;
+    private static RequestSearchFragment frag;
+
+    public static RequestSearchFragment newInstance(int index) {
+        if (frag == null) {
+            frag = new RequestSearchFragment();
+        } else {
+            /*Bundle args = new Bundle();
+            args.putInt("index", index);
+            frag.setArguments(args);*/
+            return frag;
+        }
+
+        return frag;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.detail_fragmet_layout, container, false);
-        detailItemsList = (ListView)root.findViewById(R.id.items_list);
+        detailItemsList = (ListView) root.findViewById(R.id.items_list);
         adapter = new DetailItemAdapter(getActivity(), items);
         detailItemsList.setAdapter(adapter);
 
@@ -36,7 +49,7 @@ public class DetailFragment extends Fragment {
         return root;
     }
 
-    private class ClickListener implements AdapterView.OnItemClickListener{
+    private class ClickListener implements AdapterView.OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
