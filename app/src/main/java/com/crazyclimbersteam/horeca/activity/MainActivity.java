@@ -169,12 +169,6 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
                 getFragmentManager().beginTransaction().replace(R.id.screen_container, mapFragment).commit();
         }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_search) {
-            return true;
-                getFragmentManager().beginTransaction().replace(R.id.screen_container, new MapFragment()).commit();
-                return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
