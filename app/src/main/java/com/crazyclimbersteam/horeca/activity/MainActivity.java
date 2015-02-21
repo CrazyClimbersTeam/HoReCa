@@ -153,6 +153,13 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
             SearchView searchView = (SearchView) searchItem.getActionView();
             if (searchView != null) {
                 searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+                searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+                    @Override
+                    public boolean onClose() {
+                        navigateToScreenFragment(CategoriesFragment.newInstance());
+                        return false;
+                    }
+                });
             }
         }
         return super.onCreateOptionsMenu(menu);
