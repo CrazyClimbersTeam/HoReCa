@@ -33,7 +33,6 @@
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:layout_marginTop="?actionBarSize"
         android:name="com.crazyclimbersteam.horeca.menu.NavigationMenuFragment"
         tools:layout="@layout/drawer_layout" />
 </android.support.v4.widget.DrawerLayout>
