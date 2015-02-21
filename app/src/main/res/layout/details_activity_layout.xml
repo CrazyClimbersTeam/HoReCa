@@ -1,0 +1,17 @@
+<!-- The important thing to note here is the added fitSystemWindows -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+    <com.crazyclimbersteam.horeca.activity.detail.view.DetailHeaderView
+        android:id="@+id/details_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/details_screen_header_height"
+        />
+    <com.crazyclimbersteam.horeca.activity.detail.view.DetailContentView
+        android:id="@+id/details_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+</LinearLayout>

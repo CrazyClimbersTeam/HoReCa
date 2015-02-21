@@ -1,0 +1,17 @@
+<!-- The important thing to note here is the added fitSystemWindows -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.crazyclimbersteam.horeca.tools.ParallaxView
+        android:id="@+id/details_parallax_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/details_screen_header_parallax_margin_left"
+        android:layout_marginRight="@dimen/details_screen_header_parallax_margin_right"
+        >
+        <ImageView
+            android:id="@+id/details_header_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/test_image_space"
+            />
+    </com.crazyclimbersteam.horeca.tools.ParallaxView>
+</merge>

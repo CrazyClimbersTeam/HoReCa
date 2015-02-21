@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.crazyclimbersteam.horeca.R;
-import com.crazyclimbersteam.horeca.activity.MainActivity;
 import com.crazyclimbersteam.horeca.menu.views.MenuItemsContainer;
 
 
