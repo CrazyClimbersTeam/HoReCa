@@ -36,12 +36,12 @@ public class DetailItemAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return items != null ? items.size() : 0;
+        return items.size();
     }
 
     @Override
     public DetailItemModel getItem(int position) {
-        return items != null ? items.get(position) : null;
+        return items.get(position);
     }
 
     @Override

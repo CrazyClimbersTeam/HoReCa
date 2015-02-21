@@ -71,6 +71,7 @@ public class RequestSearchFragment extends BaseFragment {
                 adapter = new DetailItemAdapter(getActivity());
 
                 adapter.setDataToAdapter(items);
+                detailItemsList.setAdapter(adapter);
                 Log.d("Detail", ""+detailItemModels.size());
             }
 
@@ -93,7 +94,7 @@ public class RequestSearchFragment extends BaseFragment {
         View root = inflater.inflate(R.layout.search_fragment, container, false);
         detailItemsList = (ListView) root.findViewById(R.id.items_list);
 //        adapter = new DetailItemAdapter(getActivity(), items);
-        detailItemsList.setAdapter(adapter);
+//        detailItemsList.setAdapter(adapter);
 
         detailItemsList.setOnItemClickListener(new ClickListener());
 //        runTask();
