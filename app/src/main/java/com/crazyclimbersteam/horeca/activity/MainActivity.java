@@ -17,6 +17,7 @@ import android.view.View;
 import com.crazyclimbersteam.horeca.HorecApplication;
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
+import com.crazyclimbersteam.horeca.fragment.detail.RequestSearchFragment;
 import com.crazyclimbersteam.horeca.fragment.main.CategoriesFragment;
 import com.crazyclimbersteam.horeca.menu.MenuItemClickListener;
 import com.crazyclimbersteam.horeca.menu.NavigationMenuFragment;
@@ -32,7 +33,7 @@ import com.jeapie.JeapieAPI;
 import static com.crazyclimbersteam.horeca.utils.LogUtils.log;
 
 
-public class MainActivity extends ActionBarActivity implements MenuItemClickListener<MainActivity> {
+public class MainActivity extends ActionBarActivity implements MenuItemClickListener<MainActivity>, CategoriesFragment.CategoriesFragmentHost {
 
     private final static String TAG = MainActivity.class.getSimpleName();
 
@@ -185,5 +186,10 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
         log("navigateToScreenFragment");
         mScreenController.navigateToScreenFragment(fragment);
         mDrawerLayout.closeDrawers();
+    }
+
+    @Override
+    public void onCategorySelected(String categoryName) {
+        navigateToScreenFragment(RequestSearchFragment.newInstance(categoryName));
     }
 }

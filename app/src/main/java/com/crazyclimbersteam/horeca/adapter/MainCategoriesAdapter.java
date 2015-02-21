@@ -1,6 +1,5 @@
 package com.crazyclimbersteam.horeca.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,12 +20,12 @@ import java.util.List;
  */
 public class MainCategoriesAdapter extends RecyclerView.Adapter<MainCategoriesAdapter.ViewHolder> {
 
-    Context context;
+    private List<Category> categoryList;
 
-    List<Category> categoryList;
+    private ViewHolder.OnCategoryClickListener onClickListener;
 
-    public MainCategoriesAdapter(Context context) {
-        this.context = context;
+    public MainCategoriesAdapter(ViewHolder.OnCategoryClickListener listener) {
+        this.onClickListener = listener;
     }
 
     public void setCategoryList(List<Category> categoryList) {
@@ -37,7 +36,7 @@ public class MainCategoriesAdapter extends RecyclerView.Adapter<MainCategoriesAd
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent, false);
-        ViewHolder holder = new ViewHolder(v);
+        ViewHolder holder = new ViewHolder(v, onClickListener);
         return holder;
     }
 
@@ -51,16 +50,30 @@ public class MainCategoriesAdapter extends RecyclerView.Adapter<MainCategoriesAd
         return categoryList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView categoryName;
         ImageView categoryImage;
+        OnCategoryClickListener onClickListener;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, OnCategoryClickListener listener) {
             super(itemView);
-            categoryName = (TextView) itemView.findViewById(R.id.category_name);
-            categoryImage = (ImageView) itemView.findViewById(R.id.category_image);
+            this.categoryName = (TextView) itemView.findViewById(R.id.category_name);
+            this.categoryImage = (ImageView) itemView.findViewById(R.id.category_image);
+            this.onClickListener = listener;
+
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            if (onClickListener != null) {
+                onClickListener.onCategoryClick(getPosition());
+            }
+        }
+
+        public interface OnCategoryClickListener {
+            public void onCategoryClick(int categoryId);
+        }
     }
 }

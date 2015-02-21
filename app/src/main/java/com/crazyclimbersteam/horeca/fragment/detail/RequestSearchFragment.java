@@ -1,6 +1,5 @@
 package com.crazyclimbersteam.horeca.fragment.detail;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,35 +9,40 @@ import android.widget.ListView;
 
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.adapter.DetailItemAdapter;
+import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
 
 import java.util.List;
 
 /**
  * Created by Марковка on 21.02.2015.
  */
-public class RequestSearchFragment extends Fragment {
+public class RequestSearchFragment extends BaseFragment {
+
+    private static final String KEY_SEARCH_QUERY = "KEY_SEARCH_QUERY";
 
     private ListView detailItemsList;
     private DetailItemAdapter adapter;
     private List<DetailItemModel> items;
-    private static RequestSearchFragment frag;
 
-    public static RequestSearchFragment newInstance(int index) {
-        if (frag == null) {
-            frag = new RequestSearchFragment();
-        } else {
-            /*Bundle args = new Bundle();
-            args.putInt("index", index);
-            frag.setArguments(args);*/
-            return frag;
-        }
+    private String searchQuery;
 
-        return frag;
+    public static RequestSearchFragment newInstance(String query) {
+        RequestSearchFragment fragment = new RequestSearchFragment();
+        Bundle args = new Bundle();
+        args.putString(KEY_SEARCH_QUERY, query);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        searchQuery = getArguments().getString(KEY_SEARCH_QUERY);
+        // TODO Start querying backend
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View root = inflater.inflate(R.layout.detail_fragmet_layout, container, false);
         detailItemsList = (ListView) root.findViewById(R.id.items_list);
         adapter = new DetailItemAdapter(getActivity(), items);

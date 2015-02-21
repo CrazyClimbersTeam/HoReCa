@@ -1,5 +1,6 @@
 package com.crazyclimbersteam.horeca.fragment.main;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -26,9 +27,17 @@ public class CategoriesFragment extends BaseFragment {
     public static String TAG = getFragmentTag(CategoriesFragment.class);
 
     public static final int COLUMNS_COUNT = 2;
+    private List<Category> categoryList;
+
+    public interface CategoriesFragmentHost {
+        public void onCategorySelected(String categoryName);
+    }
 
     private RecyclerView gridView;
     private MainCategoriesAdapter adapter;
+
+    private CategoriesFragmentHost host;
+    private MainCategoriesAdapter.ViewHolder.OnCategoryClickListener onCategoryClickListener;
 
     public static CategoriesFragment newInstance() {
         return new CategoriesFragment();
@@ -36,6 +45,27 @@ public class CategoriesFragment extends BaseFragment {
 
     public CategoriesFragment() {
         // Nothing to do
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        onCategoryClickListener = new MainCategoriesAdapter.ViewHolder.OnCategoryClickListener() {
+            @Override
+            public void onCategoryClick(int categoryId) {
+                host.onCategorySelected(categoryList.get(categoryId).getName());
+            }
+        };
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof CategoriesFragmentHost) {
+            host = (CategoriesFragmentHost) activity;
+        } else {
+            throw new IllegalStateException("Activity should implement CategoriesFragmentHost to use the fragment!");
+        }
     }
 
     @Override
@@ -50,11 +80,11 @@ public class CategoriesFragment extends BaseFragment {
         gridView.setHasFixedSize(true);
         GridLayoutManager manager = new GridLayoutManager(TwoWayLayoutManager.Orientation.VERTICAL, COLUMNS_COUNT, COLUMNS_COUNT);
         gridView.setLayoutManager(manager);
-        adapter = new MainCategoriesAdapter(getActivity().getBaseContext());
+        adapter = new MainCategoriesAdapter(onCategoryClickListener);
         gridView.setAdapter(adapter);
         int spacing = getActivity().getResources().getDimensionPixelSize(R.dimen.grid_item_spacing);
         gridView.addItemDecoration(new SpacingItemDecoration(spacing, spacing));
-        List<Category> list = new ArrayList<Category>() {
+        categoryList = new ArrayList<Category>() {
             {
                 add(new Category("url", "Category 1"));
                 add(new Category("url", "Category 2"));
@@ -75,6 +105,6 @@ public class CategoriesFragment extends BaseFragment {
                 add(new Category("url", "Category 17"));
             }
         };
-        adapter.setCategoryList(list);
+        adapter.setCategoryList(categoryList);
     }
 }
