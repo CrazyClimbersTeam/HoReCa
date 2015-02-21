@@ -1,5 +1,6 @@
 package com.crazyclimbersteam.horeca.fragment.base;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 /**
@@ -13,4 +14,6 @@ public class BaseFragment extends Fragment {
     public String getFragmentTag() {
         return getFragmentTag(getClass());
     }
+
+    public void onNewArguments(Bundle arguments) {}
 }

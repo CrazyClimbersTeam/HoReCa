@@ -9,12 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.activity.detail.DetailsActivity;
 import com.crazyclimbersteam.horeca.adapter.DetailItemAdapter;
 import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
 import com.crazyclimbersteam.horeca.net.pojo.DetailItemModel;
+import com.crazyclimbersteam.horeca.utils.LogUtils;
 
 import java.util.List;
 
@@ -22,7 +24,6 @@ import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-import retrofit.http.Path;
 
 /**
  * Created by Марковка on 21.02.2015.
@@ -39,11 +40,15 @@ public class RequestSearchFragment extends BaseFragment {
     private String searchQuery;
     private IRequest service;
 
+    public static Bundle getArguments(String searchQuery) {
+        Bundle args = new Bundle();
+        args.putString(KEY_SEARCH_QUERY, searchQuery);
+        return args;
+    }
+
     public static RequestSearchFragment newInstance(String query) {
         RequestSearchFragment fragment = new RequestSearchFragment();
-        Bundle args = new Bundle();
-        args.putString(KEY_SEARCH_QUERY, query);
-        fragment.setArguments(args);
+        fragment.setArguments(getArguments(query));
         return fragment;
     }
 
@@ -52,8 +57,6 @@ public class RequestSearchFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         searchQuery = getArguments().getString(KEY_SEARCH_QUERY);
         startSearch(searchQuery);
-        // TODO Start querying backend
-
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint(BASE_URL)
                 .setLogLevel(RestAdapter.LogLevel.FULL)
@@ -125,5 +128,13 @@ public class RequestSearchFragment extends BaseFragment {
 
     public void startSearch(String searchQuery) {
         // TODO Start querying backend (separate thread)
+    }
+
+    @Override
+    public void onNewArguments(Bundle arguments) {
+        String query = arguments.getString(KEY_SEARCH_QUERY);
+        startSearch(query);
+        Toast.makeText(getActivity(), "Got new arguments " + query, Toast.LENGTH_LONG).show();
+        LogUtils.log("Got new arguments " + query);
     }
 }

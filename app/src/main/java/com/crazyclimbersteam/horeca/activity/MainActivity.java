@@ -89,7 +89,7 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
     private void digestIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            navigateToScreenFragment(RequestSearchFragment.newInstance(query));
+            navigateToScreenFragment(RequestSearchFragment.newInstance(query), RequestSearchFragment.getArguments(query));
         } else {
             navigateToScreenFragment(CategoriesFragment.newInstance());
         }
@@ -200,8 +200,11 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
     }
 
     public void navigateToScreenFragment(BaseFragment fragment) {
-        log("navigateToScreenFragment");
-        mScreenController.navigateToScreenFragment(fragment);
+        navigateToScreenFragment(fragment, null);
+    }
+
+    public void navigateToScreenFragment(BaseFragment fragment, Bundle parameters) {
+        mScreenController.navigateToScreenFragment(fragment, parameters);
         mDrawerLayout.closeDrawers();
     }
 
