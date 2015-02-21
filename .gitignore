@@ -6,8 +6,8 @@
 *.iml
 .DS_Store
 /build
-/pass.txt
 **/.idea/libraries
 **/.idea/gradle.xml
 **/.idea/misc.xml
 **/.idea/dictionaries
+/.idea/.name
