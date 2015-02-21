@@ -2,6 +2,7 @@ package com.crazyclimbersteam.horeca.activity;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -69,7 +70,22 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
         getSupportActionBar().setHomeButtonEnabled(true);
         initDrawer();
         initScreenController();
-        navigateToScreenFragment(CategoriesFragment.newInstance());
+        digestIntent(getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        digestIntent(intent);
+    }
+
+    private void digestIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            navigateToScreenFragment(RequestSearchFragment.newInstance(query));
+        } else {
+            navigateToScreenFragment(CategoriesFragment.newInstance());
+        }
     }
 
     private void initDrawer() {
@@ -125,11 +141,11 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchManager searchManager = (SearchManager) MainActivity.this.getSystemService(Context.SEARCH_SERVICE);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         if (searchItem != null) {
             SearchView searchView = (SearchView) searchItem.getActionView();
             if (searchView != null) {
-                searchView.setSearchableInfo(searchManager.getSearchableInfo(MainActivity.this.getComponentName()));
+                searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
             }
         }
         return super.onCreateOptionsMenu(menu);
@@ -137,20 +153,12 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
-        int id = item.getItemId();
-
         switch (item.getItemId()) {
             case R.id.action_search:
                 return true;
             case R.id.action_map:
                 getFragmentManager().beginTransaction().replace(R.id.screen_container, new MapFragment()).commit();
-        }
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_search) {
-            return true;
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

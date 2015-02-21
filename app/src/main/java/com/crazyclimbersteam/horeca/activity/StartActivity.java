@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.fragment.welcome.RegistrationFragment;
 import com.crazyclimbersteam.horeca.fragment.welcome.SplashFragment;
 
-public class StartActivity extends FragmentActivity {
+public class StartActivity extends ActionBarActivity {
 
     public static final int DELAY_MILLIS = 1000;
 

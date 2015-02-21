@@ -40,12 +40,12 @@ public class RequestSearchFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         searchQuery = getArguments().getString(KEY_SEARCH_QUERY);
-        // TODO Start querying backend
+        startSearch(searchQuery);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.detail_fragmet_layout, container, false);
+        View root = inflater.inflate(R.layout.search_fragment, container, false);
         detailItemsList = (ListView) root.findViewById(R.id.items_list);
         adapter = new DetailItemAdapter(getActivity(), items);
         detailItemsList.setAdapter(adapter);
@@ -63,5 +63,9 @@ public class RequestSearchFragment extends BaseFragment {
 //            callDetailIntent.putExtra();
             startActivity(callDetailIntent);
         }
+    }
+
+    public void startSearch(String searchQuery) {
+        // TODO Start querying backend (separate thread)
     }
 }
