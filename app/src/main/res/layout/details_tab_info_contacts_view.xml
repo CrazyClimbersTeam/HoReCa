@@ -1,0 +1,46 @@
+<!-- The important thing to note here is the added fitSystemWindows -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <LinearLayout
+        android:id="@+id/detail_info_contacts_phone_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/phone"
+            />
+        <TextView
+            android:id="@+id/detail_info_contacts_phone_value"
+            android:layout_weight="0.7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="095-648-80-88"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/detail_info_contacts_address_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        >
+        <TextView
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/address"
+            />
+        <TextView
+            android:id="@+id/detail_info_contacts_address_value"
+            android:layout_weight="0.7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Kyiv, BestOfTheWorld st, 23"
+            />
+    </LinearLayout>
+</merge>
+

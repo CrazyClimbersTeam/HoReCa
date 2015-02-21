@@ -13,6 +13,8 @@
     <string name="confirm">Confirm</string>
     <string name="search">Search</string>
     <string name="map">Map</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
 
     <string name="details_info_tab_title">Info</string>
     <string name="details_feedback_tab_title">Feedback</string>

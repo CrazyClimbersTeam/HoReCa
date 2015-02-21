@@ -46,6 +46,6 @@ public class DetailHeaderView extends FrameLayout {
     }
 
     public void setTopOffset(float offsetValue) {
-
+        setTranslationY(-offsetValue * 0.25f);
     }
 }

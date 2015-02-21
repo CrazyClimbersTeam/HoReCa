@@ -30,6 +30,7 @@ public class DetailsActivity extends FragmentActivity implements DetailContentVi
         mContentView = (DetailContentView) findViewById(R.id.details_content);
         mHeaderView = (DetailHeaderView) findViewById(R.id.details_header);
         initContentView();
+//        initScrollContainer();
     }
 
     private void initContentView() {
@@ -40,6 +41,21 @@ public class DetailsActivity extends FragmentActivity implements DetailContentVi
         mContentView.setPagerAdapter(new DetailsAdapter(getSupportFragmentManager(), titles));
         mContentView.setCallbacksListener(this);
     }
+
+/*    private void initScrollContainer() {
+        final ScrollView scrollView = (ScrollView) findViewById(R.id.details_scroll_container);
+        final float headerHeight = getResources().getDimension(R.dimen.details_screen_header_height);
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                int scrollY = scrollView.getScrollY();
+                log("scroll = " + scrollY);
+                if (scrollY < headerHeight) {
+                    mHeaderView.setTopOffset(scrollY);
+                }
+            }
+        });
+    }*/
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
