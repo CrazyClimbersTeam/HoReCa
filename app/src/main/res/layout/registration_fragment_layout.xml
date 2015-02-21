@@ -9,11 +9,11 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_avatar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:src="@drawable/cartoon_ferret" />
+        android:layout_marginTop="90dp"
+        android:src="@drawable/avatar_icon" />
 
     <EditText
         style="@style/Registration.EditText"
@@ -40,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
+        android:textSize="18sp"
         android:text="@string/confirm" />
 
     <Button
@@ -48,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
+        android:textSize="18sp"
         android:text="Skip registration" />
 
 </LinearLayout>
