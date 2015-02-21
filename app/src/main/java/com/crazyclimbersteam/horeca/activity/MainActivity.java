@@ -49,6 +49,9 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
 
     private ScreenController mScreenController;
     private String mCurrentScreenTag;
+    private DrawerLayout mDrawerLayout;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,7 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
 
         mParallaxView = (ParallaxView) findViewById(R.id.parallax_content);
         mToolbar = getActionBarToolbar();
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         initDrawer();
@@ -178,7 +182,6 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
         log("onMenuItemClick: " + menuNavigable.getTag());
         menuNavigable.handleItemClick(this);
         mCurrentScreenTag = menuNavigable.getTag();
-
     }
 
     public void navigateToScreenFragment(BaseFragment fragment) {
@@ -187,6 +190,7 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
             log("navigateToScreenFragment success");
             getSupportFragmentManager().beginTransaction().replace(SCREEN_CONTAINER_ID, fragment).
                     commitAllowingStateLoss();
+            mDrawerLayout.closeDrawers();
         }
     }
 }
