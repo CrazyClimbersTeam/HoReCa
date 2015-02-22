@@ -26,10 +26,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:singleLine="true"
-                android:text="Andrew Dudka"
                 android:textColor="#ffffff"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:imeOptions="actionDone"/>
         </LinearLayout>
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -37,8 +37,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/cartoon_ferret" />
+            android:layout_marginTop="20dp"/>
     </RelativeLayout>
 
     <RelativeLayout

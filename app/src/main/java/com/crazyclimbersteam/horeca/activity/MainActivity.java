@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,6 +22,7 @@ import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
 import com.crazyclimbersteam.horeca.fragment.detail.RequestSearchFragment;
 import com.crazyclimbersteam.horeca.fragment.main.CategoriesFragment;
 import com.crazyclimbersteam.horeca.fragment.map.NewMapFragment;
+import com.crazyclimbersteam.horeca.fragment.settings.SettingsFragment;
 import com.crazyclimbersteam.horeca.menu.MenuItemClickListener;
 import com.crazyclimbersteam.horeca.menu.NavigationMenuFragment;
 import com.crazyclimbersteam.horeca.menu.model.MenuNavigable;
@@ -231,5 +233,11 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
                 .title("Sydney")
                 .snippet("The most populous city in Australia.")
                 .position(sydney));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(SettingsFragment.TAG);
+        fragment.onActivityResult(requestCode, resultCode, data);
     }
 }
