@@ -33,4 +33,8 @@ public class ScreenController {
             }
         }
     }
+
+    public String getCurrentScreenTag() {
+        return currentScreenTag;
+    }
 }
