@@ -28,6 +28,7 @@ public class ChoosePictureDialog extends DialogFragment implements View.OnClickL
                 break;
             case R.id.take_photo:
                 // TODO implement possibility to take photo from device camera
+                Crop.pickImage(getActivity());
                 dismiss();
                 break;
         }
