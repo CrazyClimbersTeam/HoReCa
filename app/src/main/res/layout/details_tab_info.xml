@@ -90,14 +90,9 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/details_tab_info_text_size"
             android:textColor="@color/detail_info_text_color"
-            android:text="Please add some description here, because im not sure what should i wirte here
-        at the current moment. 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-        11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-        11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-        11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-        11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-        11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-        11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dui risus, elementum eu pulvinar ac, tempus porta magna. Etiam tempus nec dolor vitae fermentum. Pellentesque arcu turpis, volutpat et laoreet vitae, dapibus eu nunc. Phasellus nec viverra felis. Curabitur imperdiet, tellus non venenatis consequat, neque magna pellentesque est, nec consectetur velit ex vitae nibh. Morbi volutpat libero vitae dapibus pulvinar. Aenean risus leo, gravida et volutpat malesuada, vehicula vel purus. Quisque ut mi non sem volutpat fringilla eu a leo. Vivamus lorem nulla, scelerisque nec sapien sit amet, tempus aliquet massa. Etiam sagittis augue massa, at maximus neque mollis non. Aliquam blandit augue leo, ac blandit risus elementum non. Suspendisse ornare ligula lacinia fringilla porta. Suspendisse potenti. Sed sed ligula et lacus gravida posuere. Sed pretium porttitor euismod.
+
+Phasellus mollis vel erat ac vestibulum. Ut sagittis a dolor a fermentum. Aliquam pretium eu felis fermentum efficitur. Nullam non justo eros. Etiam pellentesque nisl nisl, et pretium ligula aliquam at. Praesent finibus ultrices risus, vel malesuada mi porttitor euismod. Vivamus vulputate, risus et pulvinar dapibus, dui risus faucibus ligula, eget maximus ligula urna non lorem. Etiam vel orci nec nulla rutrum tristique in ac velit. Phasellus ipsum nisl, consectetur sit amet tempor id, cursus a dolor. Mauris suscipit tincidunt eros, in gravida nulla sagittis nec. Morbi mollis non dolor a suscipit. Curabitur fermentum dolor ac mauris finibus, et molestie urna pretium. In auctor lorem et risus efficitur accumsan vel quis ante. Pellentesque eros dolor, aliquet a purus non, euismod feugiat ex. Donec venenatis dolor vitae eros mollis pharetra."
             />
     </LinearLayout>
 </ScrollView>
