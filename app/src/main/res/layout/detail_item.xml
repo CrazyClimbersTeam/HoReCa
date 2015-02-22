@@ -6,7 +6,7 @@
               android:orientation="horizontal"
               android:gravity="center_vertical"
               android:paddingLeft="16dp"
-              android:paddingRight="16dp"
+              android:paddingRight="20dp"
     >
     <LinearLayout
         android:layout_weight="1"
@@ -21,7 +21,6 @@
             android:text="title"
             android:textSize="18dp"
             android:textColor="@color/horec_t1"
-            android:textStyle="bold"
             />
         <TextView
             android:id="@+id/distance_view"
@@ -35,7 +34,7 @@
         android:id="@+id/rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@android:style/Widget.Holo.Light.RatingBar.Indicator"
+        style="@android:style/Widget.Holo.Light.RatingBar.Small"
         android:max="5"
         />
 </LinearLayout>

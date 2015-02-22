@@ -30,7 +30,7 @@ public class DetailItemAdapter extends BaseAdapter {
 
     }
 
-    public void setDataToAdapter(List<DetailItemModel> list){
+    public void setDataToAdapter(List<DetailItemModel> list) {
         items = list;
         notifyDataSetChanged();
     }
@@ -70,9 +70,9 @@ public class DetailItemAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.detail_item, parent, false);
 
             viewHolder = new ViewHolder();
-            viewHolder.title = (TextView)convertView.findViewById(R.id.title_text_view);
-            viewHolder.rating = (RatingBar)convertView.findViewById(R.id.rating);
-            viewHolder.distance = (TextView)convertView.findViewById(R.id.distance_view);
+            viewHolder.title = (TextView) convertView.findViewById(R.id.title_text_view);
+            viewHolder.rating = (RatingBar) convertView.findViewById(R.id.rating);
+            viewHolder.distance = (TextView) convertView.findViewById(R.id.distance_view);
 
 
             convertView.setTag(viewHolder);
@@ -80,10 +80,17 @@ public class DetailItemAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        if(oneItemModel != null){
+        if (oneItemModel != null) {
             viewHolder.title.setText(oneItemModel.getName());
             viewHolder.rating.setRating((oneItemModel.getRating()));
-            viewHolder.distance.setText(String.valueOf(oneItemModel.getDistance()) + " m");
+            float distance = oneItemModel.getDistance();
+            String distanceText;
+            if (distance >= 1000) {
+                distanceText = String.format("%.1f", distance / 1000f) + " km";
+            } else {
+                distanceText = String.valueOf(Math.round(distance)) + " m";
+            }
+            viewHolder.distance.setText(distanceText);
         }
 
 
