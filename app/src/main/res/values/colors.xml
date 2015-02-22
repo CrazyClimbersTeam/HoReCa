@@ -3,8 +3,8 @@
     <color name="app_main_color">#169df9</color>
 
     <!-- general colors -->
-    <color name="horec_t1">#dfdfdf</color>
-    <color name="horec_t2">#33ffff</color>
+    <color name="horec_t1">#000033</color>
+    <color name="horec_t2">#7A7A7A</color>
     <color name="horec_t3">#ff000000</color>
     <color name="horec_t4">#cc222222</color>
 

@@ -57,6 +57,7 @@ public class MenuItemsContainer extends LinearLayout {
 
     private void addSeparator() {
         View separator = new View(getContext());
+        separator.setAlpha(0.5f);
         separator.setBackgroundColor(getResources().getColor(R.color.menu_item_separator_color));
         addView(separator, new MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 getResources().getDimensionPixelSize(R.dimen.navigation_menu_separator_height)));

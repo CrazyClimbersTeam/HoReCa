@@ -16,10 +16,73 @@ import com.crazyclimbersteam.horeca.menu.views.MenuItemView;
  * @author Mirash
  */
 public enum MenuItemModel implements MenuNavigable<MainActivity> {
-    ITEM_1 {
+    CATEGORIES {
         @Override
         public String getTitle(Resources resources) {
-            return "ITEM_1";
+            return "Categories";
+        }
+
+        @Override
+        public int getIconResourceId() {
+            return R.drawable.ferret;
+        }
+
+        @Override
+        protected BaseFragment getFragment() {
+            return new CategoriesFragment();
+        }
+
+        @Override
+        public String getTag() {
+            return CategoriesFragment.TAG;
+        }
+    },
+    POPULAR {
+        @Override
+        public String getTitle(Resources resources) {
+            return "Popular";
+        }
+
+        @Override
+        public int getIconResourceId() {
+            return R.drawable.ferret;
+        }
+
+        @Override
+        protected BaseFragment getFragment() {
+            return new CategoriesFragment();
+        }
+
+        @Override
+        public String getTag() {
+            return CategoriesFragment.TAG;
+        }
+    },
+    FAVOURITE {
+        @Override
+        public String getTitle(Resources resources) {
+            return "Favourite";
+        }
+
+        @Override
+        public int getIconResourceId() {
+            return R.drawable.ferret;
+        }
+
+        @Override
+        protected BaseFragment getFragment() {
+            return new CategoriesFragment();
+        }
+
+        @Override
+        public String getTag() {
+            return CategoriesFragment.TAG;
+        }
+    },
+    SPECIAL {
+        @Override
+        public String getTitle(Resources resources) {
+            return "Special propositions";
         }
 
         @Override
@@ -40,7 +103,7 @@ public enum MenuItemModel implements MenuNavigable<MainActivity> {
     SETTINGS {
         @Override
         public String getTitle(Resources resources) {
-            return "SETTINGS 4  DRON";
+            return "Settings";
         }
 
         @Override

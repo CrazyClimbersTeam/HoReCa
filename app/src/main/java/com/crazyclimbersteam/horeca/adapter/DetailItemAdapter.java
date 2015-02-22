@@ -83,7 +83,7 @@ public class DetailItemAdapter extends BaseAdapter {
         if(oneItemModel != null){
             viewHolder.title.setText(oneItemModel.getName());
             viewHolder.rating.setRating((oneItemModel.getRating()));
-            viewHolder.distance.setText(String.valueOf(oneItemModel.getDistance()));
+            viewHolder.distance.setText(String.valueOf(oneItemModel.getDistance()) + " m");
         }
 
 
