@@ -85,6 +85,7 @@ public class DetailsInfoFragment extends DetailsTabFragment {
         final String lng = getActivity().getIntent().getStringExtra(RequestSearchFragment.LNG);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng)), 10);
         map.animateCamera(cameraUpdate);
+        map.getUiSettings().setScrollGesturesEnabled(false);
         mapView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
