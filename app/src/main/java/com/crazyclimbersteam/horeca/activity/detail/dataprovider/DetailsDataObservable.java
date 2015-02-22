@@ -6,21 +6,44 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.crazyclimbersteam.horeca.activity.detail.fragment.photo.DetailPhotoAdapter.Item;
+
 /**
  * @author Mirash
  */
 public class DetailsDataObservable {
     //TODO
-    private List<WeakReference<FeedbackUpdateListener>> mFeedbackUpdateObservers = new ArrayList<>();
+    private List<WeakReference<DetailsListUpdateListener<FeedbackItemModel>>> mFeedbackUpdateObservers = new ArrayList<>();
+    private List<WeakReference<DetailsListUpdateListener<Item>>> mPhotoUpdateObservers = new ArrayList<>();
 
-    public void addFeedbackUpdateObserver(FeedbackUpdateListener observer) {
+    public void addFeedbackUpdateObserver(DetailsListUpdateListener<FeedbackItemModel> observer) {
         mFeedbackUpdateObservers.add(new WeakReference<>(observer));
     }
 
-    protected void notifyFedbackUpdateObservers(List<FeedbackItemModel> items) {
-        for (WeakReference<FeedbackUpdateListener> observer : mFeedbackUpdateObservers) {
+    public void addPhotoUpdateObserver(DetailsListUpdateListener<Item> observer) {
+        mPhotoUpdateObservers.add(new WeakReference<>(observer));
+    }
+
+    public void removeFeedbackUpdateObserver(DetailsListUpdateListener<FeedbackItemModel> observer) {
+        mFeedbackUpdateObservers.remove(observer);
+    }
+
+    public void removePhotoUpdateObserver(DetailsListUpdateListener<Item> observer) {
+        mPhotoUpdateObservers.remove(observer);
+    }
+
+    protected void notifyFeedbackUpdateObservers(List<FeedbackItemModel> items) {
+        for (WeakReference<DetailsListUpdateListener<FeedbackItemModel>> observer : mFeedbackUpdateObservers) {
             if (observer != null && observer.get() != null) {
-                observer.get().onFeedbackUpdate(items);
+                observer.get().onDataUpdate(items);
+            }
+        }
+    }
+
+    protected void notifyPhotoUpdateObservers(List<Item> items) {
+        for (WeakReference<DetailsListUpdateListener<Item>> observer : mPhotoUpdateObservers) {
+            if (observer != null && observer.get() != null) {
+                observer.get().onDataUpdate(items);
             }
         }
     }

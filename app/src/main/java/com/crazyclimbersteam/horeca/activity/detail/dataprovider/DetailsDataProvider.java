@@ -1,11 +1,17 @@
 package com.crazyclimbersteam.horeca.activity.detail.dataprovider;
 
+import android.content.res.Resources;
 import android.os.AsyncTask;
 
+import com.crazyclimbersteam.horeca.HorecApplication;
+import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.activity.detail.fragment.feedback.FeedbackItemModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import static com.crazyclimbersteam.horeca.activity.detail.fragment.photo.DetailPhotoAdapter.Item;
 
 /**
  * @author Mirash
@@ -17,6 +23,7 @@ public class DetailsDataProvider extends DetailsDataObservable {
     private AsyncTask mRetrievePhotosTask;
 
     private List<FeedbackItemModel> mFeedbackItems = new ArrayList<>();
+    private List<Item> mPhotoItems = new ArrayList<>();
 
     public void updateAllData() {
         updateFeedbacks();
@@ -39,10 +46,8 @@ public class DetailsDataProvider extends DetailsDataObservable {
                 @Override
                 protected void onPostExecute(List<FeedbackItemModel> items) {
                     mRetrieveFeedbacksTask = null;
-                    if (items != null) {
-                        mFeedbackItems = items;
-                        notifyFedbackUpdateObservers(mFeedbackItems);
-                    }
+                    mFeedbackItems = items != null ? items : new ArrayList<FeedbackItemModel>();
+                    notifyFeedbackUpdateObservers(mFeedbackItems);
                 }
             }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
@@ -56,11 +61,36 @@ public class DetailsDataProvider extends DetailsDataObservable {
     }
 
     public void updatePhotos() {
+        if (mRetrievePhotosTask == null) {
+            mRetrievePhotosTask = new AsyncTask<Void, Void, List<Item>>() {
+                @Override
+                protected List<Item> doInBackground(Void[] params) {
+                    //TODO
+                    try {
+                        Thread.sleep(new Random().nextInt(5000));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    List<Item> photoItems = creteRandomPhotoItems();
+                    return photoItems;
+                }
 
+                @Override
+                protected void onPostExecute(List<Item> items) {
+                    mRetrievePhotosTask = null;
+                    mPhotoItems = items != null ? items : new ArrayList<Item>();
+                    notifyPhotoUpdateObservers(mPhotoItems);
+                }
+            }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        }
     }
 
     public List<FeedbackItemModel> getFeedbacks() {
         return mFeedbackItems;
+    }
+
+    public List<Item> getPhotos() {
+        return mPhotoItems;
     }
 
     //random data generator
@@ -72,6 +102,19 @@ public class DetailsDataProvider extends DetailsDataObservable {
         itemModels.add(new FeedbackItemModel("it's so awesome!", "Den", 5));
         itemModels.add(new FeedbackItemModel("i will never go there again", "Ololo", 1));
         return itemModels;
+    }
+
+    //random data generator
+    private List<Item> creteRandomPhotoItems() {
+        List<Item> items = new ArrayList<>();
+        Resources res = HorecApplication.getInstance().getResources();
+        items.add(new Item(res.getDrawable(R.drawable.ferret)));
+        items.add(new Item(res.getDrawable(R.drawable.cartoon_ferret)));
+        items.add(new Item(res.getDrawable(R.drawable.map_icon)));
+        items.add(new Item(res.getDrawable(R.drawable.test_image_space)));
+        items.add(new Item(res.getDrawable(R.drawable.ic_plusone_tall_off_client)));
+        items.add(new Item(res.getDrawable(R.drawable.abc_btn_check_to_on_mtrl_015)));
+        return items;
     }
 
     public void clear() {

@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 
 import com.crazyclimbersteam.horeca.R;
-import com.crazyclimbersteam.horeca.activity.detail.dataprovider.FeedbackUpdateListener;
+import com.crazyclimbersteam.horeca.activity.detail.dataprovider.DetailsListUpdateListener;
 import com.crazyclimbersteam.horeca.activity.detail.fragment.DetailsTabFragment;
 
 import java.util.List;
@@ -24,7 +24,7 @@ import static com.crazyclimbersteam.horeca.utils.LogUtils.log;
 /**
  * @author Mirash
  */
-public class DetailsFeedbackFragment extends DetailsTabFragment implements FeedbackUpdateListener {
+public class DetailsFeedbackFragment extends DetailsTabFragment implements DetailsListUpdateListener<FeedbackItemModel> {
     private ListView mListView;
     private RatingBar mAddFeedbackView;
     private List<FeedbackItemModel> mItems;
@@ -42,6 +42,7 @@ public class DetailsFeedbackFragment extends DetailsTabFragment implements Feedb
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        mDataProvider.removeFeedbackUpdateObserver(this);
     }
 
     private void initViews(View rootView) {
@@ -95,8 +96,8 @@ public class DetailsFeedbackFragment extends DetailsTabFragment implements Feedb
     }
 
     @Override
-    public void onFeedbackUpdate(List<FeedbackItemModel> feedbackItemModelList) {
-        log("onFeedbackUpdate ");
+    public void onDataUpdate(List<FeedbackItemModel> feedbackItemModelList) {
+        log("onDataUpdate ");
         updateFeedbackDataAdapter(feedbackItemModelList);
     }
 }
