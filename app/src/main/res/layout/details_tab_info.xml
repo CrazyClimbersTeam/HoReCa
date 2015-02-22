@@ -75,13 +75,12 @@
 
             </LinearLayout>
 
-            <com.crazyclimbersteam.horeca.activity.detail.fragment.info.view.SquaredImageView
-                android:id="@+id/details_info_map_preview"
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mapview"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="0.4"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:src="@drawable/map_icon" />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <TextView
