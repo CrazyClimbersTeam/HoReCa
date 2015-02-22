@@ -80,6 +80,7 @@ public class DetailsInfoFragment extends DetailsTabFragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        final String name = getActivity().getIntent().getStringExtra(RequestSearchFragment.NAME);
         final String lat = getActivity().getIntent().getStringExtra(RequestSearchFragment.LAT);
         final String lng = getActivity().getIntent().getStringExtra(RequestSearchFragment.LNG);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng)), 10);
@@ -95,7 +96,7 @@ public class DetailsInfoFragment extends DetailsTabFragment {
             @Override
             public void onMapClick(LatLng latLng) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("geo: " + lat + "," + lng));
+                intent.setData(Uri.parse("geo:0,0?q=" + lat + "," + lng + "(" + name + ")"));
                 startActivity(intent);
                 Log.d("MAP", "map click");
 

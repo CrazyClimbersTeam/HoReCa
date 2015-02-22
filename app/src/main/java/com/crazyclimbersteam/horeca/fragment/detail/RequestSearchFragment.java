@@ -32,6 +32,7 @@ public class RequestSearchFragment extends BaseFragment {
 
     public static final String LAT = "lat";
     public static final String LNG = "lng";
+    public static final String NAME = "name";
 
     private ListView detailItemsList;
     private DetailItemAdapter adapter;
@@ -76,8 +77,10 @@ public class RequestSearchFragment extends BaseFragment {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent callDetailIntent = new Intent(getActivity(), DetailsActivity.class);
+            String name = adapter.getItem(position).getName();
             String lat = adapter.getItem(position).getLat();
             String lng = adapter.getItem(position).getLng();
+            callDetailIntent.putExtra(NAME, name);
             callDetailIntent.putExtra(LAT, lat);
             callDetailIntent.putExtra(LNG, lng);
             startActivity(callDetailIntent);
