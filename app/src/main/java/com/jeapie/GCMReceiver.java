@@ -12,6 +12,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
+import com.crazyclimbersteam.horeca.activity.detail.NotificationActivity;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import java.util.Date;
@@ -111,7 +113,9 @@ public class GCMReceiver extends BroadcastReceiver {
         if (message == null) return;
 
         final PackageManager manager = context.getPackageManager();
-        final Intent appIntent = manager.getLaunchIntentForPackage(context.getPackageName());
+        //final Intent appIntent = manager.getLaunchIntentForPackage(context.getPackageName());
+        final Intent appIntent = new Intent(context, NotificationActivity.class);
+        appIntent.putExtra("key", message);
         CharSequence notificationTitle = "";
         int notificationIcon = android.R.drawable.sym_def_app_icon;
         try {

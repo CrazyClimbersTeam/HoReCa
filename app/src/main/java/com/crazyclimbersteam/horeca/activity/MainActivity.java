@@ -3,6 +3,10 @@ package com.crazyclimbersteam.horeca.activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -60,6 +64,7 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
     private DrawerLayout mDrawerLayout;
     private NewMapFragment mapFragment;
     private GoogleMap map;
+    private Location location;
 
 
     @Override
@@ -176,9 +181,9 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
             case R.id.action_search:
                 return true;
             case R.id.action_map:
-                // mapFragment = new NewMapFragment();
-                //mapFragment.getMapAsync(this);
-                //getFragmentManager().beginTransaction().add(R.id.screen_container, mapFragment).commit();
+               Intent mapIntent = new Intent(MainActivity.this, MapActivity.class);
+               //mapIntent.setData(Uri.parse("geo:"+loc.latitude + "," + loc.longitude+"?q=restaurants"));
+               startActivity(mapIntent);
         }
 
         return super.onOptionsItemSelected(item);
