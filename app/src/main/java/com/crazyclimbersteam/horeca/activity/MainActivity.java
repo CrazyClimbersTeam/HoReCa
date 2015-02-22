@@ -131,7 +131,7 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
         };
         drawerLayout.setDrawerListener(drawerToggle);
         drawerToggle.syncState();
-        mDrawerLayout.openDrawer(Gravity.LEFT);
+//        mDrawerLayout.openDrawer(Gravity.LEFT);
     }
 
     private void initScreenController() {
