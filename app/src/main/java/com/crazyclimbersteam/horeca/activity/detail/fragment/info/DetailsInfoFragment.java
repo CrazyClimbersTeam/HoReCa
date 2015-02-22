@@ -1,7 +1,10 @@
 package com.crazyclimbersteam.horeca.activity.detail.fragment.info;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,7 @@ import android.widget.TextView;
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.activity.detail.fragment.DetailsTabFragment;
 import com.crazyclimbersteam.horeca.activity.detail.fragment.info.view.DetailsInfoContactsView;
+import com.crazyclimbersteam.horeca.fragment.detail.RequestSearchFragment;
 import com.crazyclimbersteam.horeca.utils.LogUtils;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -76,9 +80,27 @@ public class DetailsInfoFragment extends DetailsTabFragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(43.1, -87.9), 10);
+        final String lat = getActivity().getIntent().getStringExtra(RequestSearchFragment.LAT);
+        final String lng = getActivity().getIntent().getStringExtra(RequestSearchFragment.LNG);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng)), 10);
         map.animateCamera(cameraUpdate);
+        mapView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("MAP", "mapview click");
+
+            }
+        });
+        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("geo: " + lat + "," + lng));
+                startActivity(intent);
+                Log.d("MAP", "map click");
+
+            }
+        });
     }
 
     // DO NOT DELETE THESE CALLS

@@ -30,6 +30,9 @@ public class RequestSearchFragment extends BaseFragment {
 
     private static final String KEY_SEARCH_QUERY = "KEY_SEARCH_QUERY";
 
+    public static final String LAT = "lat";
+    public static final String LNG = "lng";
+
     private ListView detailItemsList;
     private DetailItemAdapter adapter;
     private List<DetailItemModel> items;
@@ -73,7 +76,10 @@ public class RequestSearchFragment extends BaseFragment {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent callDetailIntent = new Intent(getActivity(), DetailsActivity.class);
-//            callDetailIntent.putExtra();
+            String lat = adapter.getItem(position).getLat();
+            String lng = adapter.getItem(position).getLng();
+            callDetailIntent.putExtra(LAT, lat);
+            callDetailIntent.putExtra(LNG, lng);
             startActivity(callDetailIntent);
         }
     }
