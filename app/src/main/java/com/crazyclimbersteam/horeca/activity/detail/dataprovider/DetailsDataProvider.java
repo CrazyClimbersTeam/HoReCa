@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import com.crazyclimbersteam.horeca.HorecApplication;
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.activity.detail.fragment.feedback.FeedbackItemModel;
+import com.crazyclimbersteam.horeca.net.pojo.DetailItemModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,16 @@ public class DetailsDataProvider extends DetailsDataObservable {
 
     private List<FeedbackItemModel> mFeedbackItems = new ArrayList<>();
     private List<Item> mPhotoItems = new ArrayList<>();
+
+    private DetailItemModel mItemModel;
+
+    public void setDetailItem(DetailItemModel itemModel) {
+        mItemModel = itemModel;
+    }
+
+    public DetailItemModel getDetailItem() {
+        return mItemModel;
+    }
 
     public void updateAllData() {
         updateFeedbacks();

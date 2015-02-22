@@ -1,9 +1,11 @@
 package com.crazyclimbersteam.horeca.net.pojo;
 
+import java.io.Serializable;
+
 /**
  * Created by Марковка on 21.02.2015.
  */
-public class DetailItemModel {
+public class DetailItemModel implements Serializable{
 
     private String id;
     private String name;
@@ -12,6 +14,7 @@ public class DetailItemModel {
     private float distance;
     private String lng;
     private String lat;
+    private String telephone;
 
     public DetailItemModel(String name, float rating, float distance) {
         this.name = name;
@@ -77,5 +80,13 @@ public class DetailItemModel {
 
     public void setDistance(long distance) {
         this.distance = distance;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 }

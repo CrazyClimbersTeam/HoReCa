@@ -17,6 +17,7 @@ import com.crazyclimbersteam.horeca.activity.MenuActivity;
 import com.crazyclimbersteam.horeca.activity.detail.fragment.DetailsTabFragment;
 import com.crazyclimbersteam.horeca.activity.detail.fragment.info.view.DetailsInfoContactsView;
 import com.crazyclimbersteam.horeca.fragment.detail.RequestSearchFragment;
+import com.crazyclimbersteam.horeca.net.pojo.DetailItemModel;
 import com.crazyclimbersteam.horeca.utils.LogUtils;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,6 +44,7 @@ public class DetailsInfoFragment extends DetailsTabFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.details_tab_info, container, false);
         initViews(rootView, savedInstanceState);
+        applyData();
         return rootView;
     }
 
@@ -69,9 +71,15 @@ public class DetailsInfoFragment extends DetailsTabFragment {
 
     //TODO
     private void applyData() {
+        if (mDataProvider.getDetailItem() != null) {
+            DetailItemModel itemModel = mDataProvider.getDetailItem();
+            mTitleTextView.setText(itemModel.getName());
+            mContactsView.setPhone(itemModel.getTelephone());
+            mContactsView.setAddress(itemModel.getAddress());
+        }
     }
 
-    private void map(View v, Bundle savedInstanceState){
+    private void map(View v, Bundle savedInstanceState) {
         mapView = (MapView) v.findViewById(R.id.mapview);
         mapView.onCreate(savedInstanceState);
 

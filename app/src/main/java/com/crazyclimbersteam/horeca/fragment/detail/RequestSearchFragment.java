@@ -83,6 +83,8 @@ public class RequestSearchFragment extends BaseFragment {
             callDetailIntent.putExtra(NAME, name);
             callDetailIntent.putExtra(LAT, lat);
             callDetailIntent.putExtra(LNG, lng);
+
+            callDetailIntent.putExtra(DetailsActivity.ITEM_DETAIL_KEY,  adapter.getItem(position));
             startActivity(callDetailIntent);
         }
     }

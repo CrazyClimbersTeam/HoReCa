@@ -9,6 +9,8 @@ import com.crazyclimbersteam.horeca.activity.detail.adapter.DetailsAdapter;
 import com.crazyclimbersteam.horeca.activity.detail.dataprovider.DetailsDataProvider;
 import com.crazyclimbersteam.horeca.activity.detail.view.DetailContentView;
 import com.crazyclimbersteam.horeca.activity.detail.view.DetailHeaderView;
+import com.crazyclimbersteam.horeca.net.pojo.DetailItemModel;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,7 @@ import static com.crazyclimbersteam.horeca.utils.LogUtils.log;
 public class DetailsActivity extends ActionBarActivity implements DetailContentView.IDetailCallbacks {
     public static String TAG = DetailsActivity.class.getSimpleName();
     public static final int DETAIL_SCREENS_COUNT = 3;
+    public static final String ITEM_DETAIL_KEY = "item_details";
 
     private DetailContentView mContentView;
     private DetailHeaderView mHeaderView;
@@ -37,12 +40,24 @@ public class DetailsActivity extends ActionBarActivity implements DetailContentV
         initDataProvider();
         overridePendingTransition(R.anim.enter, R.anim.exit);
 //        initScrollContainer();
+
+        Bundle extra = getIntent().getExtras();
+        if (extra != null) {
+            DetailItemModel itemModel = (DetailItemModel) extra.getSerializable(ITEM_DETAIL_KEY);
+            if (itemModel != null) {
+                mDataProvider.setDetailItem(itemModel);
+            }
+        }
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Banka Bar");
+        if (mDataProvider.getDetailItem() != null) {
+            getSupportActionBar().setTitle(mDataProvider.getDetailItem().getName());
+        } else {
+            getSupportActionBar().setTitle("Banka Bar");
+        }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
