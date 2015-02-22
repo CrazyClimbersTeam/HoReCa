@@ -70,6 +70,7 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
         if (checkPlayServices()) {
             // Get GCM token asynchronously in background
             JeapieAPI.getInstance().registerTokenInBackground(this, SENDER_ID);
+            JeapieAPI.getInstance().emitAddTagEvent("HoReCa");
         }
 
         containerView = (ParallaxView) findViewById(SCREEN_CONTAINER_ID);

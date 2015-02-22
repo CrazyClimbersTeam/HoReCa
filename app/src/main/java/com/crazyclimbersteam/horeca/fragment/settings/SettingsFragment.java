@@ -104,7 +104,7 @@ public class SettingsFragment extends BaseFragment {
             tagItem.setName(tagArr[i]);
             tagItem.setChecked(true);
             tags[i] = tagItem;
-            mJeapieAPI.emitAddTagEvent(tagArr[i]);
+            //mJeapieAPI.emitAddTagEvent(tagArr[i]);
         }
         final SpinnerAdapter tagAdapter = new SpinnerAdapter(getActivity(), R.layout.spinner_item, tags);
         tagAdapter.setDropDownViewResource(R.layout.spinner_drop_down_item);
@@ -115,9 +115,9 @@ public class SettingsFragment extends BaseFragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Item item = tagAdapter.getItem(position);
                 if (item.isChecked()){
-                    mJeapieAPI.emitAddTagEvent(item.getName());
+                    //mJeapieAPI.emitAddTagEvent(item.getName());
                 } else {
-                    mJeapieAPI.emitRemoveTagEvent(item.getName());
+                    //mJeapieAPI.emitRemoveTagEvent(item.getName());
                 }
             }
 
@@ -138,7 +138,7 @@ public class SettingsFragment extends BaseFragment {
             categoryItem.setName(categoryArr[i]);
             categoryItem.setChecked(true);
             categories[i] = categoryItem;
-            mJeapieAPI.emitAddTagEvent(categoryArr[i]);
+            //mJeapieAPI.emitAddTagEvent(categoryArr[i]);
         }
         final SpinnerAdapter categoryAdapter = new SpinnerAdapter(getActivity(), R.layout.spinner_item, categories);
         categorySpinner.setAdapter(categoryAdapter);
@@ -150,9 +150,9 @@ public class SettingsFragment extends BaseFragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Item item = categoryAdapter.getItem(position);
                 if (item.isChecked()){
-                    mJeapieAPI.emitAddTagEvent(item.getName());
+                    //mJeapieAPI.emitAddTagEvent(item.getName());
                 } else {
-                    mJeapieAPI.emitRemoveTagEvent(item.getName());
+                    //mJeapieAPI.emitRemoveTagEvent(item.getName());
                 }
             }
 

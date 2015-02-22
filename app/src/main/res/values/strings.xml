@@ -24,48 +24,42 @@
     <string name="search_empty_list_message">Sorry, no restaurants have entries that you\'ve searched.</string>
 
     <string-array name="categories">
-        <item>Всі заклади</item>
-        <item>Ресторини</item>
-        <item>Кафетерії</item>
-        <item>Фаст фуд</item>
-        <item>Піцерії</item>
-        <item>Сушібари</item>
-        <item>Стейк бари</item>
-        <item>Паби</item>
-        <item>Кальян бари</item>
-        <item>Нічні клуби</item>
-        <item>Екзотична кухня</item>
+        <item>Choose places</item>
+        <item>Restaurant</item>
+        <item>Fast Food</item>
+        <item>Cafe</item>
+        <item>Pizzeria</item>
+        <item>Sushi Bar</item>
+        <item>Steak bar</item>
+        <item>Pub</item>
+        <item>Hookah bar</item>
+        <item>Night Club</item>
+        <item>Exotic cuisine</item>
     </string-array>
 
     <string-array name="tags">
-        <item>Всі теги</item>
-        <item>Пиво</item>
-        <item>Алкоголь</item>
-        <item>Піца</item>
-        <item>Суші</item>
-        <item>Кальян</item>
-        <item>Салат</item>
-        <item>Бургер</item>
-        <item>Стейк</item>
-        <item>Круасан</item>
-        <item>Тістечкр</item>
-        <item>Шоколад</item>
-        <item>Борщ</item>
-        <item>Картопля</item>
-        <item>Кава</item>
-        <item>Коктейль</item>
-        <item>Вареники</item>
-        <item>Напої</item>
-        <item>Кола</item>
-        <item>Горішки</item>
-        <item>Гостра їжа</item>
+        <item>Choose tags</item>
+        <item>Fruit</item>
+        <item>Beer</item>
+        <item>Meet</item>
+        <item>Pizza</item>
+        <item>Sushi</item>
+        <item>Hookah</item>
+        <item>Salad</item>
+        <item>Burger</item>
+        <item>Steak</item>
+        <item>Cake</item>
+        <item>Chocolate</item>
+        <item>Coffee</item>
+        <item>Drinks</item>
     </string-array>
 
     <string-array name="notifications_count">
-        <item>0 "-" 1</item>
-        <item>2 "-" 5</item>
+        <item>Does not receive</item>
+        <item>1 "-" 5</item>
         <item>5 "-" 10</item>
-        <item> ">" 10</item>
+        <item>10 "-" 20</item>
+        <item>∞</item>
     </string-array>
 
 </resources>

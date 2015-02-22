@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/settings_margin_left"
             android:layout_marginTop="@dimen/settings_margin_between_view"
-            android:text="Категорії сповіщень"
+            android:text="Notifications categories"
             android:textColor="#000"
             android:textSize="@dimen/app_main_text_size"/>
 
@@ -78,7 +78,7 @@
             android:layout_alignLeft="@id/category_tv"
             android:layout_below="@id/category_tv"
             android:layout_marginTop="40dp"
-            android:text="Теги сповіщень"
+            android:text="Notifications tags"
             android:textColor="#000"
             android:textSize="@dimen/app_main_text_size" />
 
@@ -106,7 +106,7 @@
             android:layout_alignLeft="@+id/category_tv"
             android:layout_below="@id/tag_tv"
             android:layout_marginTop="@dimen/settings_layout_margin_right"
-            android:text="Сповіщення про акційні пропозиції"
+            android:text="Promotional notifications"
             android:textColor="#000"
             android:textSize="@dimen/app_main_text_size" />
 
@@ -128,7 +128,7 @@
             android:layout_alignLeft="@+id/category_tv"
             android:layout_below="@id/actions_tv"
             android:layout_marginTop="@dimen/settings_layout_margin_right"
-            android:text="Кількість сповіщень в день"
+            android:text="Notifications count"
             android:textColor="#000"
             android:textSize="@dimen/app_main_text_size" />
 
