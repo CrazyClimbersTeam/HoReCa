@@ -4,6 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <item name="windowActionModeOverlay">true</item>
         <item name="android:textColorPrimary">#FFF</item>
+        <item name="colorPrimary">@color/app_main_color</item>
         <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
         <item name="spinnerDropDownItemStyle">@style/SpinnerItem.DropDownItem</item>
     </style>
