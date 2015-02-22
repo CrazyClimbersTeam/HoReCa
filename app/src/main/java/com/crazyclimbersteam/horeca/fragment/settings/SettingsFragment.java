@@ -3,6 +3,7 @@ package com.crazyclimbersteam.horeca.fragment.settings;
 import com.crazyclimbersteam.horeca.dialog.ChoosePictureDialog;
 import com.crazyclimbersteam.horeca.fragment.welcome.RegistrationFragment;
 import com.crazyclimbersteam.horeca.utils.LogUtils;
+import com.jeapie.JeapieAPI;
 import com.soundcloud.android.crop.Crop;
 import java.io.File;
 import butterknife.ButterKnife;
@@ -15,6 +16,7 @@ import android.net.Uri;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -48,10 +50,12 @@ public class SettingsFragment extends BaseFragment {
 
     private SharedPreferences mRegistrationPrefs;
     private ChoosePictureDialog mTakePictureDialog;
+    private JeapieAPI mJeapieAPI;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mJeapieAPI = JeapieAPI.getInstance();
         mTakePictureDialog = new ChoosePictureDialog();
         mRegistrationPrefs = getActivity().getSharedPreferences(RegistrationFragment.REGISTRATION_PREFS, Context.MODE_PRIVATE);
     }
@@ -98,12 +102,30 @@ public class SettingsFragment extends BaseFragment {
         for (int i = 0; i < tagArr.length; i++) {
             tagItem = new Item();
             tagItem.setName(tagArr[i]);
-            tagItem.setChecked(false);
+            tagItem.setChecked(true);
             tags[i] = tagItem;
+            mJeapieAPI.emitAddTagEvent(tagArr[i]);
         }
-        SpinnerAdapter tagAdapter = new SpinnerAdapter(getActivity(), R.layout.spinner_item, tags);
+        final SpinnerAdapter tagAdapter = new SpinnerAdapter(getActivity(), R.layout.spinner_item, tags);
         tagAdapter.setDropDownViewResource(R.layout.spinner_drop_down_item);
         tagSpinner.setAdapter(tagAdapter);
+
+        tagSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Item item = tagAdapter.getItem(position);
+                if (item.isChecked()){
+                    mJeapieAPI.emitAddTagEvent(item.getName());
+                } else {
+                    mJeapieAPI.emitRemoveTagEvent(item.getName());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void initCategorySpinner(View settingsView) {
@@ -114,13 +136,31 @@ public class SettingsFragment extends BaseFragment {
         for (int i = 0; i < categories.length; i++) {
             categoryItem = new Item();
             categoryItem.setName(categoryArr[i]);
-            categoryItem.setChecked(false);
+            categoryItem.setChecked(true);
             categories[i] = categoryItem;
+            mJeapieAPI.emitAddTagEvent(categoryArr[i]);
         }
-        SpinnerAdapter categoryAdapter = new SpinnerAdapter(getActivity(), R.layout.spinner_item, categories);
+        final SpinnerAdapter categoryAdapter = new SpinnerAdapter(getActivity(), R.layout.spinner_item, categories);
         categorySpinner.setAdapter(categoryAdapter);
         categoryAdapter.setDropDownViewResource(R.layout.spinner_drop_down_item);
         categorySpinner.setAdapter(categoryAdapter);
+
+        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Item item = categoryAdapter.getItem(position);
+                if (item.isChecked()){
+                    mJeapieAPI.emitAddTagEvent(item.getName());
+                } else {
+                    mJeapieAPI.emitRemoveTagEvent(item.getName());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            //full throw
+            }
+        });
     }
 
     @Override
