@@ -86,7 +86,9 @@ public class RequestSearchFragment extends BaseFragment {
                 adapter.setDataToAdapter(items);
                 LogUtils.log("Got " + detailItemModels.size() + " items");
                 if (items.size() == 0) {
-                    emptyView.setText(getString(R.string.search_empty_list_message));
+                    if (getActivity() != null && !isDetached()) {
+                        emptyView.setText(getString(R.string.search_empty_list_message));
+                    }
                 }
             }
 

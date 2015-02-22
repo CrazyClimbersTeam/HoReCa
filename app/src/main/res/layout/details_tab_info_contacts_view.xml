@@ -7,23 +7,24 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:background="?attr/selectableItemBackground"
-        android:padding="@dimen/detail_info_item_padding"
+        android:paddingTop="@dimen/detail_info_item_padding"
+        android:paddingBottom="@dimen/detail_info_item_padding"
         >
         <ImageView
-            android:layout_weight="0.3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/phone_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/phone"
             />
         <TextView
             android:id="@+id/detail_info_contacts_phone_value"
-            android:layout_weight="0.7"
-            android:layout_width="0dp"
+            android:layout_marginLeft="4dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="@drawable/detail_button_text_selector"
             android:text="095-648-80-88"
             />
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/detail_info_contacts_address_section"
         android:layout_width="match_parent"
@@ -31,19 +32,21 @@
         android:layout_marginTop="5dp"
         android:gravity="center_vertical"
         android:background="?attr/selectableItemBackground"
-        android:padding="@dimen/detail_info_item_padding"
+        android:paddingTop="@dimen/detail_info_item_padding"
+        android:paddingBottom="@dimen/detail_info_item_padding"
         >
         <ImageView
-            android:layout_weight="0.3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/address_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/location"
             />
         <TextView
             android:id="@+id/detail_info_contacts_address_value"
-            android:layout_weight="0.7"
-            android:layout_width="0dp"
+            android:layout_marginLeft="4dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@drawable/detail_button_text_selector"
+            android:textSize="16dp"
             android:text="Kyiv, BestOfTheWorld st, 23"
             />
     </LinearLayout>
