@@ -13,6 +13,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.crazyclimbersteam.horeca.R;
+import com.crazyclimbersteam.horeca.activity.MenuActivity;
 import com.crazyclimbersteam.horeca.activity.detail.fragment.DetailsTabFragment;
 import com.crazyclimbersteam.horeca.activity.detail.fragment.info.view.DetailsInfoContactsView;
 import com.crazyclimbersteam.horeca.fragment.detail.RequestSearchFragment;
@@ -59,6 +60,9 @@ public class DetailsInfoFragment extends DetailsTabFragment {
             @Override
             public void onClick(View v) {
                 LogUtils.log("menu button on click");
+                Intent menuActivityIntent = new Intent(getActivity(), MenuActivity.class);
+                menuActivityIntent.putExtras(MenuActivity.getIntentParams("1"));
+                startActivity(menuActivityIntent);
             }
         });
     }
