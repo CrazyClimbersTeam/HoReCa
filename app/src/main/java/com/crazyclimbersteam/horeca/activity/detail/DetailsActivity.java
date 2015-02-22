@@ -46,6 +46,7 @@ public class DetailsActivity extends ActionBarActivity implements DetailContentV
             DetailItemModel itemModel = (DetailItemModel) extra.getSerializable(ITEM_DETAIL_KEY);
             if (itemModel != null) {
                 mDataProvider.setDetailItem(itemModel);
+                mHeaderView.applyAwesomePanaramaScreen(itemModel.getName());
             }
         }
     }

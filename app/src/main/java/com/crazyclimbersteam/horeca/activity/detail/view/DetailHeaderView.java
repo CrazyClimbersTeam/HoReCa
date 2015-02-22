@@ -37,8 +37,25 @@ public class DetailHeaderView extends FrameLayout {
         addView(view, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 
-    public void setImage(Drawable drawable) {
-        mImageView.setImageDrawable(drawable);
+    public void setImageId(int drawableId) {
+        mImageView.setImageResource(drawableId);
+    }
+
+    public void applyAwesomePanaramaScreen(String pubName) {
+        if (pubName != null) {
+            int imageId;
+            switch (pubName) {
+                case "Porter":
+                    imageId = R.drawable.porter_screen;
+                    break;
+                case "Docker's ABC":
+                    imageId = R.drawable.dockers_screen;
+                    break;
+                default:
+                    return;
+            }
+            setImageId(imageId);
+        }
     }
 
     public void setLeftOffset(float offsetValue) {
