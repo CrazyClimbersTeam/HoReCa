@@ -86,12 +86,12 @@ public class CategoriesFragment extends BaseFragment {
         gridView.addItemDecoration(new SpacingItemDecoration(spacing, spacing));
         categoryList = new ArrayList<Category>() {
             {
-                add(new Category("url", "Beer"));
-                add(new Category("url", "Pizza"));
-                add(new Category("url", "Category 3"));
-                add(new Category("url", "Category 4"));
-                add(new Category("url", "Category 5"));
-                add(new Category("url", "Category 6"));
+                add(new Category("url", "Beer", R.drawable.default_grid_image_beer));
+                add(new Category("url", "Pizza", R.drawable.default_grid_image_pizza));
+                add(new Category("url", "Sushi", R.drawable.default_grid_image_sushi));
+                add(new Category("url", "Banana", R.drawable.default_grid_image_banana));
+                add(new Category("url", "Hookah", R.drawable.default_grid_image_hookan));
+                add(new Category("url", "Chokolate", R.drawable.default_grid_image_chokolate));
                 add(new Category("url", "Category 7"));
                 add(new Category("url", "Category 8"));
                 add(new Category("url", "Category 9"));

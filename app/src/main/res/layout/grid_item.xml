@@ -8,7 +8,7 @@
         android:id="@+id/category_image"
         android:layout_width="@dimen/grid_item_width"
         android:layout_height="@dimen/grid_item_height"
-        android:background="@drawable/fon"
+        android:scaleType="fitXY"
         />
     <FrameLayout
         android:layout_width="@dimen/grid_item_width"

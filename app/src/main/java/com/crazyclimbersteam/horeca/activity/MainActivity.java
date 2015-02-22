@@ -131,7 +131,7 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
         };
         drawerLayout.setDrawerListener(drawerToggle);
         drawerToggle.syncState();
-        mDrawerLayout.openDrawer(Gravity.LEFT);
+//        mDrawerLayout.openDrawer(Gravity.LEFT);
     }
 
     private void initScreenController() {
@@ -176,7 +176,7 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
             case R.id.action_search:
                 return true;
             case R.id.action_map:
-               // mapFragment = new NewMapFragment();
+                // mapFragment = new NewMapFragment();
                 //mapFragment.getMapAsync(this);
                 //getFragmentManager().beginTransaction().add(R.id.screen_container, mapFragment).commit();
         }
@@ -236,6 +236,15 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
                 .title("Sydney")
                 .snippet("The most populous city in Australia.")
                 .position(sydney));
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (CategoriesFragment.TAG.equals(mScreenController.getCurrentScreenTag())) {
+            super.onBackPressed();
+        } else {
+            mScreenController.navigateToScreenFragment(CategoriesFragment.newInstance(), null);
+        }
     }
 
     @Override

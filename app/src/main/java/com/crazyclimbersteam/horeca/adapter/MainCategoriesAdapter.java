@@ -44,7 +44,19 @@ public class MainCategoriesAdapter extends RecyclerView.Adapter<MainCategoriesAd
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        viewHolder.categoryName.setText(categoryList.get(position).getName());
+        Category category = categoryList.get(position);
+        viewHolder.categoryName.setText(category.getName());
+        //TODO not sure how should i load from dat url
+//        if(image is not available)
+        if (category.getDefaultImageId() != 0) {
+            viewHolder.categoryImage.setImageResource(category.getDefaultImageId());
+        } else {
+            viewHolder.categoryImage.setImageResource(getDefaultImageId());
+        }
+    }
+
+    private int getDefaultImageId(){
+        return R.drawable.fon;
     }
 
     @Override
@@ -78,4 +90,5 @@ public class MainCategoriesAdapter extends RecyclerView.Adapter<MainCategoriesAd
             public void onCategoryClick(int categoryId);
         }
     }
+
 }
