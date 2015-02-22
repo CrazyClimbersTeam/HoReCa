@@ -6,12 +6,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:background="?attr/selectableItemBackground"
+        android:padding="@dimen/detail_info_item_padding"
         >
-        <TextView
+        <ImageView
             android:layout_weight="0.3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/phone"
+            android:src="@drawable/phone_icon"
             />
         <TextView
             android:id="@+id/detail_info_contacts_phone_value"
@@ -27,12 +29,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:background="?attr/selectableItemBackground"
+        android:padding="@dimen/detail_info_item_padding"
         >
-        <TextView
+        <ImageView
             android:layout_weight="0.3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/address"
+            android:src="@drawable/address_icon"
             />
         <TextView
             android:id="@+id/detail_info_contacts_address_value"

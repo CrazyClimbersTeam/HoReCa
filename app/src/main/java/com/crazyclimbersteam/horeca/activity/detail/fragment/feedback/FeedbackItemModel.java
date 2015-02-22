@@ -22,6 +22,9 @@ public class FeedbackItemModel {
         this.icon = icon;
     }
 
+    public FeedbackItemModel() {
+    }
+
     public FeedbackItemModel(String message, String name, float rating) {
         this(message, name, rating, HorecApplication.getInstance().getResources().getDrawable(R.drawable.ferret));
     }
