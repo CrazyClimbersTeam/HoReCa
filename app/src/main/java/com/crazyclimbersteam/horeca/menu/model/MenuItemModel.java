@@ -24,7 +24,7 @@ public enum MenuItemModel implements MenuNavigable<MainActivity> {
 
         @Override
         public int getIconResourceId() {
-            return R.drawable.ferret;
+            return R.drawable.navigation_menu_item_category_selector;
         }
 
         @Override
@@ -45,7 +45,7 @@ public enum MenuItemModel implements MenuNavigable<MainActivity> {
 
         @Override
         public int getIconResourceId() {
-            return R.drawable.ferret;
+            return R.drawable.navigation_menu_item_popular_selector;
         }
 
         @Override
@@ -66,7 +66,7 @@ public enum MenuItemModel implements MenuNavigable<MainActivity> {
 
         @Override
         public int getIconResourceId() {
-            return R.drawable.ferret;
+            return R.drawable.navigation_menu_item_favourite_selector;
         }
 
         @Override
@@ -87,7 +87,7 @@ public enum MenuItemModel implements MenuNavigable<MainActivity> {
 
         @Override
         public int getIconResourceId() {
-            return R.drawable.ferret;
+            return R.drawable.navigation_menu_item_special_selector;
         }
 
         @Override
@@ -108,7 +108,7 @@ public enum MenuItemModel implements MenuNavigable<MainActivity> {
 
         @Override
         public int getIconResourceId() {
-            return R.drawable.cartoon_ferret;
+            return R.drawable.navigation_menu_item_settings_selector;
         }
 
         @Override

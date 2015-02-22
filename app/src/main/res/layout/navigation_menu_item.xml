@@ -6,11 +6,10 @@
     >
     <ImageView
         android:id="@+id/menu_item_icon"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/navigation_menu_item_icon_margin_left"
-        android:src="@drawable/ferret"
         android:scaleType="fitXY"
         />
     <TextView
@@ -19,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/navigation_menu_item_title_margin_left"
+        android:textSize="17dp"
         android:textColor="@drawable/navigation_menu_item_text_selector"
         />
 </RelativeLayout>

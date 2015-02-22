@@ -5,8 +5,8 @@
     <dimen name="navigation_drawer_width">310dp</dimen>
     <dimen name="navigation_menu_item_height">64dp</dimen>
     <dimen name="navigation_menu_separator_height">1px</dimen>
-    <dimen name="navigation_menu_item_icon_margin_left">7dp</dimen>
-    <dimen name="navigation_menu_item_title_margin_left">48dp</dimen>
+    <dimen name="navigation_menu_item_icon_margin_left">13dp</dimen>
+    <dimen name="navigation_menu_item_title_margin_left">58dp</dimen>
 
     <dimen name="details_screen_header_parallax_margin">74dp</dimen>
     <dimen name="details_screen_header_parallax_margin_negative">-75dp</dimen>
