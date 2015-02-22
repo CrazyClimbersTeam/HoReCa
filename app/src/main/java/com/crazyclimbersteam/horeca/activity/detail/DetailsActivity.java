@@ -1,7 +1,8 @@
 package com.crazyclimbersteam.horeca.activity.detail;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.activity.detail.adapter.DetailsAdapter;
@@ -17,7 +18,7 @@ import static com.crazyclimbersteam.horeca.utils.LogUtils.log;
 /**
  * @author Mirash
  */
-public class DetailsActivity extends FragmentActivity implements DetailContentView.IDetailCallbacks {
+public class DetailsActivity extends ActionBarActivity implements DetailContentView.IDetailCallbacks {
     public static String TAG = DetailsActivity.class.getSimpleName();
     public static final int DETAIL_SCREENS_COUNT = 3;
 
@@ -35,6 +36,13 @@ public class DetailsActivity extends FragmentActivity implements DetailContentVi
         initContentView();
         initDataProvider();
 //        initScrollContainer();
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Banka Bar");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -71,6 +79,17 @@ public class DetailsActivity extends FragmentActivity implements DetailContentVi
             }
         });
     }*/
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
