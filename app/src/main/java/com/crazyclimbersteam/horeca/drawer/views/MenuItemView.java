@@ -1,4 +1,4 @@
-package com.crazyclimbersteam.horeca.menu.views;
+package com.crazyclimbersteam.horeca.drawer.views;
 
 import android.content.Context;
 import android.widget.FrameLayout;

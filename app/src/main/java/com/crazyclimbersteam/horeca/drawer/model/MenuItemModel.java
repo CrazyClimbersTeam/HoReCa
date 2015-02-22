@@ -1,16 +1,14 @@
-package com.crazyclimbersteam.horeca.menu.model;
+package com.crazyclimbersteam.horeca.drawer.model;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.activity.MainActivity;
-import com.crazyclimbersteam.horeca.activity.detail.DetailsActivity;
+import com.crazyclimbersteam.horeca.drawer.views.MenuItemView;
 import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
 import com.crazyclimbersteam.horeca.fragment.main.CategoriesFragment;
 import com.crazyclimbersteam.horeca.fragment.settings.SettingsFragment;
-import com.crazyclimbersteam.horeca.menu.views.MenuItemView;
 
 /**
  * @author Mirash

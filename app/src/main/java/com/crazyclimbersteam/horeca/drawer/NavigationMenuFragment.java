@@ -1,4 +1,4 @@
-package com.crazyclimbersteam.horeca.menu;
+package com.crazyclimbersteam.horeca.drawer;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -11,13 +11,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
-
 import com.crazyclimbersteam.horeca.R;
+import com.crazyclimbersteam.horeca.drawer.views.MenuItemsContainer;
 import com.crazyclimbersteam.horeca.fragment.welcome.RegistrationFragment;
-import com.crazyclimbersteam.horeca.menu.views.MenuItemsContainer;
 
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 

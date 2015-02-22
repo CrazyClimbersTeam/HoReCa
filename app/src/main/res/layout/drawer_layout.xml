@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.crazyclimbersteam.horeca.menu.views.MenuItemsContainer
+        <com.crazyclimbersteam.horeca.drawer.views.MenuItemsContainer
             android:id="@+id/menu_item_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

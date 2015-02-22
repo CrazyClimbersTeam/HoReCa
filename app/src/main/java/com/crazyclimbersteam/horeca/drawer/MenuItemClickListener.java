@@ -1,10 +1,10 @@
-package com.crazyclimbersteam.horeca.menu;
+package com.crazyclimbersteam.horeca.drawer;
 
 
 import android.app.Activity;
 
-import com.crazyclimbersteam.horeca.menu.model.MenuNavigable;
-import com.crazyclimbersteam.horeca.menu.views.MenuItemView;
+import com.crazyclimbersteam.horeca.drawer.model.MenuNavigable;
+import com.crazyclimbersteam.horeca.drawer.views.MenuItemView;
 
 /**
  * @author Mirash

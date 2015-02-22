@@ -1,4 +1,4 @@
-package com.crazyclimbersteam.horeca.menu.views;
+package com.crazyclimbersteam.horeca.drawer.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.crazyclimbersteam.horeca.R;
-import com.crazyclimbersteam.horeca.menu.MenuItemClickListener;
-import com.crazyclimbersteam.horeca.menu.model.MenuItemModel;
-import com.crazyclimbersteam.horeca.menu.model.MenuNavigable;
+import com.crazyclimbersteam.horeca.drawer.MenuItemClickListener;
+import com.crazyclimbersteam.horeca.drawer.model.MenuItemModel;
+import com.crazyclimbersteam.horeca.drawer.model.MenuNavigable;
 
 import java.util.ArrayList;
 import java.util.Collections;
