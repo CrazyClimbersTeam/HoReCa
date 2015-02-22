@@ -35,6 +35,7 @@ public class DetailsActivity extends ActionBarActivity implements DetailContentV
         mHeaderView = (DetailHeaderView) findViewById(R.id.details_header);
         initContentView();
         initDataProvider();
+        overridePendingTransition(R.anim.enter, R.anim.exit);
 //        initScrollContainer();
     }
 
@@ -100,6 +101,12 @@ public class DetailsActivity extends ActionBarActivity implements DetailContentV
     @Override
     public void onPageSelected(int position) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        overridePendingTransition(R.anim.pop_enter, R.anim.pop_exit);
+        super.onBackPressed();
     }
 
     public DetailsDataProvider getDataProvider() {

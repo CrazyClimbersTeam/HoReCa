@@ -111,15 +111,15 @@ public class SettingsFragment extends BaseFragment {
     private void initCategorySpinner(View settingsView) {
         Spinner categorySpinner = (Spinner) settingsView.findViewById(R.id.category_spinner);
         String[] categoryArr = getResources().getStringArray(R.array.categories);
-        Item[] categories = new Item[categoryArr.length];
+        final Item[] categories = new Item[categoryArr.length];
         Item categoryItem;
         for (int i = 0; i < categories.length; i++) {
             categoryItem = new Item();
             categoryItem.setName(categoryArr[i]);
             categoryItem.setChecked(true);
             categories[i] = categoryItem;
-            mJeapieAPI.emitAddTagEvent(categoryArr[i]);
         }
+
         final SpinnerAdapter categoryAdapter = new SpinnerAdapter(getActivity(), R.layout.spinner_item, categories);
         categorySpinner.setAdapter(categoryAdapter);
         categoryAdapter.setDropDownViewResource(R.layout.spinner_drop_down_item);
@@ -130,11 +130,11 @@ public class SettingsFragment extends BaseFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Item item = categoryAdapter.getItem(position);
-                if (item.isChecked()) {
+   /*             if (item.isChecked()) {
                     mJeapieAPI.emitAddTagEvent(item.getName());
                 } else {
                     mJeapieAPI.emitRemoveTagEvent(item.getName());
-                }
+                }*/
             }
 
             @Override
@@ -142,20 +142,38 @@ public class SettingsFragment extends BaseFragment {
                 //full throw
             }
         });
+
+        new Thread() {
+            @Override
+            public void run() {
+                for (Item item : categories) {
+                    mJeapieAPI.emitAddTagEvent(item.getName());
+                }
+            }
+        }.start();
     }
 
     private void initTagSpinner(View settingsView) {
         Spinner tagSpinner = (Spinner) settingsView.findViewById(R.id.tag_spinner);
         String[] tagArr = getResources().getStringArray(R.array.tags);
-        Item[] tags = new Item[tagArr.length];
+        final Item[] tags = new Item[tagArr.length];
         Item tagItem;
         for (int i = 0; i < tagArr.length; i++) {
             tagItem = new Item();
             tagItem.setName(tagArr[i]);
             tagItem.setChecked(true);
             tags[i] = tagItem;
-            mJeapieAPI.emitAddTagEvent(tagArr[i]);
         }
+
+        new Thread() {
+            @Override
+            public void run() {
+                for (Item item : tags) {
+                    mJeapieAPI.emitAddTagEvent(item.getName());
+                }
+            }
+        }.start();
+
         final SpinnerAdapter tagAdapter = new SpinnerAdapter(getActivity(), R.layout.spinner_item, tags);
         tagAdapter.setDropDownViewResource(R.layout.spinner_drop_down_item);
         tagSpinner.setAdapter(tagAdapter);
@@ -165,11 +183,11 @@ public class SettingsFragment extends BaseFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Item item = tagAdapter.getItem(position);
-                if (item.isChecked()) {
+    /*            if (item.isChecked()) {
                     mJeapieAPI.emitAddTagEvent(item.getName());
                 } else {
                     mJeapieAPI.emitRemoveTagEvent(item.getName());
-                }
+                }*/
             }
 
             @Override

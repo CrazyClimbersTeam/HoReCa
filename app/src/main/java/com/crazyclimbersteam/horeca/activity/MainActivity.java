@@ -222,7 +222,8 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
 
     @Override
     public void onCategorySelected(String categoryName) {
-        navigateToScreenFragment(RequestSearchFragment.newInstance(categoryName));
+        mScreenController.navigateToScreenFragment(RequestSearchFragment.newInstance(categoryName), null, true);
+        mDrawerLayout.closeDrawers();
     }
 
     @Override
@@ -243,7 +244,7 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
         if (CategoriesFragment.TAG.equals(mScreenController.getCurrentScreenTag())) {
             super.onBackPressed();
         } else {
-            mScreenController.navigateToScreenFragment(CategoriesFragment.newInstance(), null);
+            mScreenController.navigateToScreenFragment(CategoriesFragment.newInstance(), null, false);
         }
     }
 

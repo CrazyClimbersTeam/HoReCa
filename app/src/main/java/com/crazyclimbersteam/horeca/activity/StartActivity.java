@@ -34,7 +34,7 @@ public class StartActivity extends ActionBarActivity {
                     startActivity(mainActivityIntent);
                     finish();
                 } else {
-                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit).
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_start, R.anim.exit_start, R.anim.pop_enter, R.anim.pop_exit).
                         replace(R.id.main_container, new RegistrationFragment(),
                                 RegistrationFragment.TAG).commitAllowingStateLoss();
                 }
