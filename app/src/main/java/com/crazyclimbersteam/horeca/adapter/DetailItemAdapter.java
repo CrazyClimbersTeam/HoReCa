@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.net.pojo.DetailItemModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ public class DetailItemAdapter extends BaseAdapter {
 
     public DetailItemAdapter(Context context) {
         this.context = context;
-//        this.items = items;
+        this.items = new ArrayList<>();
         inflater = LayoutInflater.from(context);
 
     }

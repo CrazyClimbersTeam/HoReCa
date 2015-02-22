@@ -2,6 +2,8 @@ package com.crazyclimbersteam.horeca;
 
 import android.app.Application;
 
+import com.crazyclimbersteam.horeca.net.manager.HorecApiManager;
+
 import static com.crazyclimbersteam.horeca.utils.LogUtils.log;
 
 /**
@@ -20,5 +22,6 @@ public class HorecApplication extends Application {
         log("application onCreate");
         super.onCreate();
         instance = this;
+        HorecApiManager.init();
     }
 }

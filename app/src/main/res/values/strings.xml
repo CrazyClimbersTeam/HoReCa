@@ -21,6 +21,7 @@
     <string name="details_info_tab_title">Info</string>
     <string name="details_feedback_tab_title">Feedback</string>
     <string name="details_photos_tab_title">Photo</string>
+    <string name="search_empty_list_message">Sorry, no restaurants have entries that you\'ve searched.</string>
 
     <string-array name="categories">
         <item>Всі заклади</item>

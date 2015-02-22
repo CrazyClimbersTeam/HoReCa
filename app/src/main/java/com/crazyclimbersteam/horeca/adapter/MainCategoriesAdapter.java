@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.net.pojo.Category;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +27,7 @@ public class MainCategoriesAdapter extends RecyclerView.Adapter<MainCategoriesAd
 
     public MainCategoriesAdapter(ViewHolder.OnCategoryClickListener listener) {
         this.onClickListener = listener;
+        categoryList = new ArrayList<>();
     }
 
     public void setCategoryList(List<Category> categoryList) {
