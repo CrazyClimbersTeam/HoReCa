@@ -173,9 +173,9 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
             case R.id.action_search:
                 return true;
             case R.id.action_map:
-                mapFragment = new NewMapFragment();
-                mapFragment.getMapAsync(this);
-                getFragmentManager().beginTransaction().replace(R.id.screen_container, mapFragment).commit();
+               // mapFragment = new NewMapFragment();
+                //mapFragment.getMapAsync(this);
+                //getFragmentManager().beginTransaction().add(R.id.screen_container, mapFragment).commit();
         }
 
         return super.onOptionsItemSelected(item);
