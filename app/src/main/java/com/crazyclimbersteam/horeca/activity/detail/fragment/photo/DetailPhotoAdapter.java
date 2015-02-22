@@ -45,6 +45,7 @@ public class DetailPhotoAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         if (view == null) {
             view = new SquaredImageView(mContext);
+            ((ImageView) view).setScaleType(ImageView.ScaleType.FIT_XY);
         }
         Item item = getItem(i);
         ((ImageView) view).setImageDrawable(item.drawable);

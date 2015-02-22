@@ -119,12 +119,49 @@ public class DetailsDataProvider extends DetailsDataObservable {
     private List<Item> creteRandomPhotoItems() {
         List<Item> items = new ArrayList<>();
         Resources res = HorecApplication.getInstance().getResources();
-        items.add(new Item(res.getDrawable(R.drawable.ferret)));
-        items.add(new Item(res.getDrawable(R.drawable.cartoon_ferret)));
-        items.add(new Item(res.getDrawable(R.drawable.map_icon)));
-        items.add(new Item(res.getDrawable(R.drawable.test_image_space)));
-        items.add(new Item(res.getDrawable(R.drawable.ic_plusone_tall_off_client)));
-        items.add(new Item(res.getDrawable(R.drawable.abc_btn_check_to_on_mtrl_015)));
+        if (mItemModel != null && mItemModel.getName() != null) {
+            int imageId;
+            switch (mItemModel.getName()) {
+                case "Porter":
+                    items.add(new Item(res.getDrawable(R.drawable.a1)));
+                    items.add(new Item(res.getDrawable(R.drawable.a2)));
+                    items.add(new Item(res.getDrawable(R.drawable.a3)));
+                    items.add(new Item(res.getDrawable(R.drawable.a5)));
+                    items.add(new Item(res.getDrawable(R.drawable.a6)));
+                    items.add(new Item(res.getDrawable(R.drawable.a7)));
+                    break;
+                case "Docker's ABC":
+                    items.add(new Item(res.getDrawable(R.drawable.p1)));
+                    items.add(new Item(res.getDrawable(R.drawable.p2)));
+                    items.add(new Item(res.getDrawable(R.drawable.p3)));
+                    items.add(new Item(res.getDrawable(R.drawable.p4)));
+                    items.add(new Item(res.getDrawable(R.drawable.p5)));
+                    items.add(new Item(res.getDrawable(R.drawable.p6)));
+                    items.add(new Item(res.getDrawable(R.drawable.p7)));
+                    break;
+                case "El'Mate":
+                    items.add(new Item(res.getDrawable(R.drawable.k1)));
+                    items.add(new Item(res.getDrawable(R.drawable.k2)));
+                    items.add(new Item(res.getDrawable(R.drawable.k3)));
+                    break;
+                case "El' Mate":
+                    items.add(new Item(res.getDrawable(R.drawable.k1)));
+                    items.add(new Item(res.getDrawable(R.drawable.k2)));
+                    items.add(new Item(res.getDrawable(R.drawable.k3)));
+                    break;
+                case "Shokoladnizha":
+                    items.add(new Item(res.getDrawable(R.drawable.s1)));
+                    items.add(new Item(res.getDrawable(R.drawable.s2)));
+                    break;
+                default:
+                    items.add(new Item(res.getDrawable(R.drawable.ferret)));
+                    items.add(new Item(res.getDrawable(R.drawable.cartoon_ferret)));
+                    items.add(new Item(res.getDrawable(R.drawable.map_icon)));
+                    items.add(new Item(res.getDrawable(R.drawable.test_image_space)));
+                    items.add(new Item(res.getDrawable(R.drawable.ic_plusone_tall_off_client)));
+                    items.add(new Item(res.getDrawable(R.drawable.abc_btn_check_to_on_mtrl_015)));
+            }
+        }
         return items;
     }
 

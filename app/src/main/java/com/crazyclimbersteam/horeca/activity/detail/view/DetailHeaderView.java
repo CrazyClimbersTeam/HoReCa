@@ -51,6 +51,15 @@ public class DetailHeaderView extends FrameLayout {
                 case "Docker's ABC":
                     imageId = R.drawable.dockers_screen;
                     break;
+                case "El'Mate":
+                    imageId = R.drawable.kalyan;
+                    break;
+                case "El' Mate":
+                    imageId = R.drawable.kalyan;
+                    break;
+                case "Shokoladnizha":
+                    imageId = R.drawable.chocolate;
+                    break;
                 default:
                     return;
             }
