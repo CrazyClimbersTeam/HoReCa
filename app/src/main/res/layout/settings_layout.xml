@@ -29,6 +29,7 @@
                 android:textColor="#ffffff"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:hint="Enter your name"
                 android:imeOptions="actionDone"/>
         </LinearLayout>
 

@@ -1,38 +1,40 @@
 package com.crazyclimbersteam.horeca.fragment.settings;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.dialog.ChoosePictureDialog;
+import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
 import com.crazyclimbersteam.horeca.fragment.welcome.RegistrationFragment;
 import com.crazyclimbersteam.horeca.utils.LogUtils;
 import com.jeapie.JeapieAPI;
 import com.soundcloud.android.crop.Crop;
+
 import java.io.File;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
-import android.view.KeyEvent;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
-import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.Spinner;
-import android.widget.TextView;
-
-import com.crazyclimbersteam.horeca.R;
-import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
 
 /**
  * @author A.Dudka
@@ -51,11 +53,11 @@ public class SettingsFragment extends BaseFragment {
     private SharedPreferences mRegistrationPrefs;
     private ChoosePictureDialog mTakePictureDialog;
     private JeapieAPI mJeapieAPI;
+    private View mSettingsView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mJeapieAPI = JeapieAPI.getInstance();
         mTakePictureDialog = new ChoosePictureDialog();
         mRegistrationPrefs = getActivity().getSharedPreferences(RegistrationFragment.REGISTRATION_PREFS, Context.MODE_PRIVATE);
     }
@@ -63,9 +65,8 @@ public class SettingsFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View settingsView = inflater.inflate(R.layout.settings_layout, container, false);
-        ButterKnife.inject(this, settingsView);
-
+        mSettingsView = inflater.inflate(R.layout.settings_layout, container, false);
+        ButterKnife.inject(this, mSettingsView);
         mUserName.setText(mRegistrationPrefs.getString(RegistrationFragment.USER_NAME, ""));
 
         //FIXME: FIND BETTER APPROACH
@@ -75,57 +76,36 @@ public class SettingsFragment extends BaseFragment {
         } else {
             mUserAvatar.setImageResource(R.drawable.avatar_icon);
         }
+        return mSettingsView;
+    }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mJeapieAPI = JeapieAPI.getInstance();
         mUserName.setOnEditorActionListener(new DoneOnEditorActionListener());
-
         // Categories spinner
-        initCategorySpinner(settingsView);
+        initCategorySpinner(mSettingsView);
         // Tags spinner
-        initTagSpinner(settingsView);
+        initTagSpinner(mSettingsView);
         // Notification count spinner
-        initNotificationCounySpinner(settingsView);
-        return settingsView;
+        initNotificationCountSpinner(mSettingsView);
     }
 
-    private void initNotificationCounySpinner(View settingsView) {
-        Spinner notificationCountSpinner = (Spinner) settingsView.findViewById(R.id.notification_count_spinner);
-        ArrayAdapter<CharSequence> notificationCountAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.notifications_count, R.layout.spinner_item);
-        notificationCountAdapter.setDropDownViewResource(R.layout.notification_count_spinner_count);
-        notificationCountSpinner.setAdapter(notificationCountAdapter);
-    }
-
-    private void initTagSpinner(View settingsView) {
-        Spinner tagSpinner = (Spinner) settingsView.findViewById(R.id.tag_spinner);
-        String[] tagArr = getResources().getStringArray(R.array.tags);
-        Item[] tags = new Item[tagArr.length];
-        Item tagItem;
-        for (int i = 0; i < tagArr.length; i++) {
-            tagItem = new Item();
-            tagItem.setName(tagArr[i]);
-            tagItem.setChecked(true);
-            tags[i] = tagItem;
-            //mJeapieAPI.emitAddTagEvent(tagArr[i]);
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent result) {
+        super.onActivityResult(requestCode, resultCode, result);
+        if (requestCode == Crop.REQUEST_PICK && resultCode == Activity.RESULT_OK) {
+            beginCrop(result.getData());
+        } else if (requestCode == Crop.REQUEST_CROP) {
+            handleCrop(resultCode, result);
         }
-        final SpinnerAdapter tagAdapter = new SpinnerAdapter(getActivity(), R.layout.spinner_item, tags);
-        tagAdapter.setDropDownViewResource(R.layout.spinner_drop_down_item);
-        tagSpinner.setAdapter(tagAdapter);
+    }
 
-        tagSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Item item = tagAdapter.getItem(position);
-                if (item.isChecked()){
-                    //mJeapieAPI.emitAddTagEvent(item.getName());
-                } else {
-                    //mJeapieAPI.emitRemoveTagEvent(item.getName());
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
     }
 
     private void initCategorySpinner(View settingsView) {
@@ -138,35 +118,96 @@ public class SettingsFragment extends BaseFragment {
             categoryItem.setName(categoryArr[i]);
             categoryItem.setChecked(true);
             categories[i] = categoryItem;
-            //mJeapieAPI.emitAddTagEvent(categoryArr[i]);
+            mJeapieAPI.emitAddTagEvent(categoryArr[i]);
         }
         final SpinnerAdapter categoryAdapter = new SpinnerAdapter(getActivity(), R.layout.spinner_item, categories);
         categorySpinner.setAdapter(categoryAdapter);
         categoryAdapter.setDropDownViewResource(R.layout.spinner_drop_down_item);
         categorySpinner.setAdapter(categoryAdapter);
 
+        //FIXME I don't confident that this shit is worked
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Item item = categoryAdapter.getItem(position);
-                if (item.isChecked()){
-                    //mJeapieAPI.emitAddTagEvent(item.getName());
+                if (item.isChecked()) {
+                    mJeapieAPI.emitAddTagEvent(item.getName());
                 } else {
-                    //mJeapieAPI.emitRemoveTagEvent(item.getName());
+                    mJeapieAPI.emitRemoveTagEvent(item.getName());
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-            //full throw
+                //full throw
             }
         });
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        setHasOptionsMenu(false);
+    private void initTagSpinner(View settingsView) {
+        Spinner tagSpinner = (Spinner) settingsView.findViewById(R.id.tag_spinner);
+        String[] tagArr = getResources().getStringArray(R.array.tags);
+        Item[] tags = new Item[tagArr.length];
+        Item tagItem;
+        for (int i = 0; i < tagArr.length; i++) {
+            tagItem = new Item();
+            tagItem.setName(tagArr[i]);
+            tagItem.setChecked(true);
+            tags[i] = tagItem;
+            mJeapieAPI.emitAddTagEvent(tagArr[i]);
+        }
+        final SpinnerAdapter tagAdapter = new SpinnerAdapter(getActivity(), R.layout.spinner_item, tags);
+        tagAdapter.setDropDownViewResource(R.layout.spinner_drop_down_item);
+        tagSpinner.setAdapter(tagAdapter);
+
+        //FIXME I don't confident that this shit is worked
+        tagSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Item item = tagAdapter.getItem(position);
+                if (item.isChecked()) {
+                    mJeapieAPI.emitAddTagEvent(item.getName());
+                } else {
+                    mJeapieAPI.emitRemoveTagEvent(item.getName());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void initNotificationCountSpinner(View settingsView) {
+        Spinner notificationCountSpinner = (Spinner) settingsView.findViewById(R.id.notification_count_spinner);
+        ArrayAdapter<CharSequence> notificationCountAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.notifications_count, R.layout.spinner_item);
+        notificationCountAdapter.setDropDownViewResource(R.layout.notification_count_spinner_count);
+        notificationCountSpinner.setAdapter(notificationCountAdapter);
+    }
+
+
+    @OnClick(R.id.user_avatar)
+    public void setUserAvatar(de.hdodenhof.circleimageview.CircleImageView imageView) {
+        mTakePictureDialog.show(getFragmentManager(), null);
+    }
+
+
+    private void beginCrop(Uri source) {
+        Uri outputUri = Uri.fromFile(new File(getActivity().getCacheDir(), "cropped"));
+        new Crop(source).output(outputUri).asSquare().start(getActivity());
+    }
+
+    private void handleCrop(int resultCode, Intent result) {
+        if (resultCode == Activity.RESULT_OK) {
+            SharedPreferences.Editor editor = mRegistrationPrefs.edit();
+            editor.putString(USER_AVATAR_URI, Crop.getOutput(result).toString());
+            editor.apply();
+            LogUtils.log("handleCrop");
+            mUserAvatar.setImageURI(Crop.getOutput(result));
+        } else if (resultCode == Crop.RESULT_ERROR) {
+            Toast.makeText(getActivity(), Crop.getError(result).getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private static class Item {
@@ -228,44 +269,6 @@ public class SettingsFragment extends BaseFragment {
             CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.spinner_checkbox);
             checkBox.setChecked(items[position].isChecked());
             return convertView;
-        }
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.reset(this);
-    }
-
-    @OnClick(R.id.user_avatar)
-    public void setUserAvatar(de.hdodenhof.circleimageview.CircleImageView imageView) {
-        mTakePictureDialog.show(getFragmentManager(), null);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent result) {
-        super.onActivityResult(requestCode, resultCode, result);
-        if (requestCode == Crop.REQUEST_PICK && resultCode == Activity.RESULT_OK) {
-            beginCrop(result.getData());
-        } else if (requestCode == Crop.REQUEST_CROP) {
-            handleCrop(resultCode, result);
-        }
-    }
-
-    private void beginCrop(Uri source) {
-        Uri outputUri = Uri.fromFile(new File(getActivity().getCacheDir(), "cropped"));
-        new Crop(source).output(outputUri).asSquare().start(getActivity());
-    }
-
-    private void handleCrop(int resultCode, Intent result) {
-        if (resultCode == Activity.RESULT_OK) {
-            SharedPreferences.Editor editor = mRegistrationPrefs.edit();
-            editor.putString(USER_AVATAR_URI, Crop.getOutput(result).toString());
-            editor.apply();
-            LogUtils.log("handleCrop");
-            mUserAvatar.setImageURI(Crop.getOutput(result));
-        } else if (resultCode == Crop.RESULT_ERROR) {
-            Toast.makeText(getActivity(), Crop.getError(result).getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
