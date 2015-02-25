@@ -1,10 +1,12 @@
 package com.crazyclimbersteam.horeca.drawer.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.activity.MainActivity;
+import com.crazyclimbersteam.horeca.activity.detail.DetailsActivity;
 import com.crazyclimbersteam.horeca.drawer.views.MenuItemView;
 import com.crazyclimbersteam.horeca.fragment.base.BaseFragment;
 import com.crazyclimbersteam.horeca.fragment.main.CategoriesFragment;
@@ -117,6 +119,28 @@ public enum MenuItemModel implements MenuNavigable<MainActivity> {
         @Override
         public String getTag() {
             return SettingsFragment.TAG;
+        }
+    },
+    MIRASH_AWESOME_TEST {
+        @Override
+        public String getTitle(Resources resources) {
+            return "I'm fkn awesome";
+        }
+
+        @Override
+        public int getIconResourceId() {
+            return R.drawable.default_grid_image_banana;
+        }
+
+        @Override
+        public String getTag() {
+            return SettingsFragment.TAG;
+        }
+
+        @Override
+        public void handleItemClick(MainActivity activity) {
+            Intent detailsIntent = new Intent(activity, DetailsActivity.class);
+            activity.startActivity(detailsIntent);
         }
     };
 

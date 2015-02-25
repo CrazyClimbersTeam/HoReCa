@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.activity.MenuActivity;
+import com.crazyclimbersteam.horeca.activity.detail.DetailsActivity;
 import com.crazyclimbersteam.horeca.activity.detail.fragment.DetailsTabFragment;
 import com.crazyclimbersteam.horeca.activity.detail.fragment.info.view.DetailsInfoContactsView;
 import com.crazyclimbersteam.horeca.fragment.detail.RequestSearchFragment;
@@ -54,7 +55,7 @@ public class DetailsInfoFragment extends DetailsTabFragment {
         mRatingBarView = (RatingBar) rootView.findViewById(R.id.details_info_rating_bar);
         mContactsView = (DetailsInfoContactsView) rootView.findViewById(R.id.details_info_contacts_view);
         initMenuButton(rootView);
-        map(rootView, savedInstanceState);
+        initMap(rootView, savedInstanceState);
     }
 
     private void initMenuButton(View rootView) {
@@ -79,7 +80,7 @@ public class DetailsInfoFragment extends DetailsTabFragment {
         }
     }
 
-    private void map(View v, Bundle savedInstanceState) {
+    private void initMap(View v, Bundle savedInstanceState) {
         mapView = (MapView) v.findViewById(R.id.mapview);
         mapView.onCreate(savedInstanceState);
 
@@ -92,9 +93,14 @@ public class DetailsInfoFragment extends DetailsTabFragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        final String name = getActivity().getIntent().getStringExtra(RequestSearchFragment.NAME);
-        final String lat = getActivity().getIntent().getStringExtra(RequestSearchFragment.LAT);
-        final String lng = getActivity().getIntent().getStringExtra(RequestSearchFragment.LNG);
+        Intent intent = getActivity().getIntent();
+        //TODO remade me please
+        if (intent.getSerializableExtra(DetailsActivity.ITEM_DETAIL_KEY) == null) {
+            return;
+        }
+        final String name = intent.getStringExtra(RequestSearchFragment.NAME);
+        final String lat = intent.getStringExtra(RequestSearchFragment.LAT);
+        final String lng = intent.getStringExtra(RequestSearchFragment.LNG);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng)), 10);
         map.animateCamera(cameraUpdate);
         map.getUiSettings().setScrollGesturesEnabled(false);
@@ -102,7 +108,6 @@ public class DetailsInfoFragment extends DetailsTabFragment {
             @Override
             public void onClick(View v) {
                 Log.d("MAP", "mapview click");
-
             }
         });
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
