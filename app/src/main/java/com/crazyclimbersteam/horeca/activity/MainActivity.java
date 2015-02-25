@@ -3,10 +3,7 @@ package com.crazyclimbersteam.horeca.activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -15,7 +12,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -62,9 +58,6 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
 
     private ScreenController mScreenController;
     private DrawerLayout mDrawerLayout;
-    private NewMapFragment mapFragment;
-    private GoogleMap map;
-    private Location location;
 
 
     @Override
@@ -181,9 +174,9 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
             case R.id.action_search:
                 return true;
             case R.id.action_map:
-               Intent mapIntent = new Intent(MainActivity.this, MapActivity.class);
-               //mapIntent.setData(Uri.parse("geo:"+loc.latitude + "," + loc.longitude+"?q=restaurants"));
-               startActivity(mapIntent);
+                Intent mapIntent = new Intent(MainActivity.this, MapActivity.class);
+                //mapIntent.setData(Uri.parse("geo:"+loc.latitude + "," + loc.longitude+"?q=restaurants"));
+                startActivity(mapIntent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -227,8 +220,7 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
 
     @Override
     public void onCategorySelected(String categoryName) {
-        mScreenController.navigateToScreenFragment(RequestSearchFragment.newInstance(categoryName), null, true);
-        mDrawerLayout.closeDrawers();
+        navigateToScreenFragment(RequestSearchFragment.newInstance(categoryName), null);
     }
 
     @Override
@@ -249,12 +241,13 @@ public class MainActivity extends ActionBarActivity implements MenuItemClickList
         if (CategoriesFragment.TAG.equals(mScreenController.getCurrentScreenTag())) {
             super.onBackPressed();
         } else {
-            mScreenController.navigateToScreenFragment(CategoriesFragment.newInstance(), null, false);
+            navigateToScreenFragment(CategoriesFragment.newInstance(), null);
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //TODO it must not be here
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(SettingsFragment.TAG);
         fragment.onActivityResult(requestCode, resultCode, data);
     }

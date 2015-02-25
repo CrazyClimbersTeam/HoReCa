@@ -76,6 +76,7 @@ public class RequestSearchFragment extends BaseFragment {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            //TODO move 2 some method and dont put everything, but just serializable item
             Intent callDetailIntent = new Intent(getActivity(), DetailsActivity.class);
             String name = adapter.getItem(position).getName();
             String lat = adapter.getItem(position).getLat();

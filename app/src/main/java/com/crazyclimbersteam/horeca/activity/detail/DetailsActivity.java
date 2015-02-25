@@ -10,7 +10,6 @@ import com.crazyclimbersteam.horeca.activity.detail.dataprovider.DetailsDataProv
 import com.crazyclimbersteam.horeca.activity.detail.view.DetailContentView;
 import com.crazyclimbersteam.horeca.activity.detail.view.DetailHeaderView;
 import com.crazyclimbersteam.horeca.net.pojo.DetailItemModel;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +37,6 @@ public class DetailsActivity extends ActionBarActivity implements DetailContentV
         mHeaderView = (DetailHeaderView) findViewById(R.id.details_header);
         initContentView();
         initDataProvider();
-        overridePendingTransition(R.anim.enter, R.anim.exit);
 //        initScrollContainer();
 
         Bundle extra = getIntent().getExtras();
@@ -46,7 +44,6 @@ public class DetailsActivity extends ActionBarActivity implements DetailContentV
             DetailItemModel itemModel = (DetailItemModel) extra.getSerializable(ITEM_DETAIL_KEY);
             if (itemModel != null) {
                 mDataProvider.setDetailItem(itemModel);
-                mHeaderView.applyAwesomePanaramaScreen(itemModel.getName());
             }
         }
     }
@@ -57,7 +54,7 @@ public class DetailsActivity extends ActionBarActivity implements DetailContentV
         if (mDataProvider.getDetailItem() != null) {
             getSupportActionBar().setTitle(mDataProvider.getDetailItem().getName());
         } else {
-            getSupportActionBar().setTitle("Banka Bar");
+            getSupportActionBar().setTitle("Dude, where is my name?!");
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -117,12 +114,6 @@ public class DetailsActivity extends ActionBarActivity implements DetailContentV
     @Override
     public void onPageSelected(int position) {
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        overridePendingTransition(R.anim.pop_enter, R.anim.pop_exit);
-        super.onBackPressed();
     }
 
     public DetailsDataProvider getDataProvider() {

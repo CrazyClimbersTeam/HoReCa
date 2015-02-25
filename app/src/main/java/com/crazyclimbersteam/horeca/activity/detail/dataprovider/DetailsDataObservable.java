@@ -25,10 +25,12 @@ public class DetailsDataObservable {
     }
 
     public void removeFeedbackUpdateObserver(DetailsListUpdateListener<FeedbackItemModel> observer) {
+        //TODO oops
         mFeedbackUpdateObservers.remove(observer);
     }
 
     public void removePhotoUpdateObserver(DetailsListUpdateListener<Item> observer) {
+        //TODO oops
         mPhotoUpdateObservers.remove(observer);
     }
 

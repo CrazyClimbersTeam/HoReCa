@@ -41,32 +41,6 @@ public class DetailHeaderView extends FrameLayout {
         mImageView.setImageResource(drawableId);
     }
 
-    public void applyAwesomePanaramaScreen(String pubName) {
-        if (pubName != null) {
-            int imageId;
-            switch (pubName) {
-                case "Porter":
-                    imageId = R.drawable.porter_screen;
-                    break;
-                case "Docker's ABC":
-                    imageId = R.drawable.dockers_screen;
-                    break;
-                case "El'Mate":
-                    imageId = R.drawable.kalyan;
-                    break;
-                case "El' Mate":
-                    imageId = R.drawable.kalyan;
-                    break;
-                case "Shokoladnizha":
-                    imageId = R.drawable.chocolate;
-                    break;
-                default:
-                    return;
-            }
-            setImageId(imageId);
-        }
-    }
-
     public void setLeftOffset(float offsetValue) {
         mParallaxView.setOffset(-mLeftOffset * (offsetValue - 1));
     }
