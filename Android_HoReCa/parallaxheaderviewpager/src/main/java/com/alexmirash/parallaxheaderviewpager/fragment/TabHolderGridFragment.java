@@ -4,9 +4,10 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.FrameLayout;
-import android.widget.ListView;
 
-public abstract class TabHolderListFragment<T extends ListView> extends TabHolderAbsListFragment<T> implements OnScrollListener {
+import com.alexmirash.parallaxheaderviewpager.view.headergridview.HeaderGridView;
+
+public abstract class TabHolderGridFragment<T extends HeaderGridView> extends TabHolderAbsListFragment<T> implements OnScrollListener {
 
     protected void applyScrollingHeaderHolder(T scrollingView, int headerHeight) {
         FrameLayout placeHolderView = new FrameLayout(getActivity());

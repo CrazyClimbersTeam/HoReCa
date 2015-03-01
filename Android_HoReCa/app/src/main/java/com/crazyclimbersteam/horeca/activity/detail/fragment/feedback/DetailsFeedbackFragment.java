@@ -34,7 +34,7 @@ public class DetailsFeedbackFragment extends TabHolderListFragment<ListView> imp
     private FeedbackAdapter mAdapter;
 
     @Override
-    protected ListView createListView(LayoutInflater inflater) {
+    protected ListView createScrollingRootView(LayoutInflater inflater) {
         return new ListView(getActivity());
     }
 
@@ -99,7 +99,7 @@ public class DetailsFeedbackFragment extends TabHolderListFragment<ListView> imp
     public void updateFeedbackDataAdapter(List<FeedbackItemModel> items) {
         mItems = items;
         mAdapter = new FeedbackAdapter(getActivity(), mAddFeedbackView, items);
-        mListView.setAdapter(mAdapter);
+        mRootScrollingView.setAdapter(mAdapter);
     }
 
     @Override

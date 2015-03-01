@@ -9,6 +9,7 @@ import com.crazyclimbersteam.horeca.HorecApplication;
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.activity.detail.fragment.feedback.DetailsFeedbackFragment;
 import com.crazyclimbersteam.horeca.activity.detail.fragment.info.DetailInfoFragment;
+import com.crazyclimbersteam.horeca.activity.detail.fragment.photo.DetailsPhotoFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ public class DetailsPagerAdapter extends TabPagerAdapter {
             case 1:
                 return new DetailsFeedbackFragment();
             case 2:
-                return new DetailInfoFragment();
+                return new DetailsPhotoFragment();
             default:
                 return null;
         }

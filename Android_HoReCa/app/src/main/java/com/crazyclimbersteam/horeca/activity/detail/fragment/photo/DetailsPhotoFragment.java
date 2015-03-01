@@ -1,16 +1,18 @@
 package com.crazyclimbersteam.horeca.activity.detail.fragment.photo;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.alexmirash.parallaxheaderviewpager.fragment.TabHolderGridFragment;
+import com.alexmirash.parallaxheaderviewpager.view.headergridview.HeaderGridView;
 import com.crazyclimbersteam.horeca.R;
+import com.crazyclimbersteam.horeca.activity.detail.IDetailDataProvider;
+import com.crazyclimbersteam.horeca.activity.detail.dataprovider.DetailsDataProvider;
 import com.crazyclimbersteam.horeca.activity.detail.dataprovider.DetailsListUpdateListener;
-import com.crazyclimbersteam.horeca.activity.detail.fragment.DetailsTabFragment;
 import com.crazyclimbersteam.horeca.utils.LogUtils;
 
 import java.util.List;
@@ -18,27 +20,34 @@ import java.util.List;
 /**
  * @author Mirash
  */
-public class DetailsPhotoFragment extends DetailsTabFragment implements AdapterView.OnItemClickListener, DetailsListUpdateListener<DetailPhotoAdapter.Item> {
-    private GridView mGridView;
+public class DetailsPhotoFragment extends TabHolderGridFragment<HeaderGridView> implements IDetailDataProvider,
+        AdapterView.OnItemClickListener, DetailsListUpdateListener<DetailPhotoAdapter.Item> {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.details_tab_photos, null);
-        mGridView = (GridView) rootView.findViewById(R.id.details_tab_photo_grid);
-        mGridView.setOnItemClickListener(this);
-        updateData(mDataProvider.getPhotos());
-        mDataProvider.addPhotoUpdateObserver(this);
-        return rootView;
+    protected HeaderGridView createScrollingRootView(LayoutInflater inflater) {
+        HeaderGridView gridView = new HeaderGridView(getActivity());
+        gridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
+        gridView.setNumColumns(2);
+        gridView.setHorizontalSpacing(getResources().getDimensionPixelSize(R.dimen.detail_screen_photo_grid_spacing));
+        gridView.setVerticalSpacing(getResources().getDimensionPixelSize(R.dimen.detail_screen_photo_grid_spacing));
+        return gridView;
+    }
+
+    @Override
+    protected void onCreateViewContent(LayoutInflater inflater, Bundle savedInstanceState) {
+        mRootScrollingView.setOnItemClickListener(this);
+        updateData(getDataProvider().getPhotos());
+        getDataProvider().addPhotoUpdateObserver(this);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mDataProvider.removePhotoUpdateObserver(this);
+        getDataProvider().removePhotoUpdateObserver(this);
     }
 
     public void updateData(List<DetailPhotoAdapter.Item> photos) {
-        mGridView.setAdapter(new DetailPhotoAdapter(mGridView.getContext(), photos));
+        mRootScrollingView.setAdapter(new DetailPhotoAdapter(getActivity(), photos));
     }
 
     @Override
@@ -49,5 +58,11 @@ public class DetailsPhotoFragment extends DetailsTabFragment implements AdapterV
     @Override
     public void onDataUpdate(List<DetailPhotoAdapter.Item> feedbackItemModelList) {
         updateData(feedbackItemModelList);
+    }
+
+    @Override
+    public DetailsDataProvider getDataProvider() {
+        Activity activity = getActivity();
+        return ((IDetailDataProvider) activity).getDataProvider();
     }
 }
