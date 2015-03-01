@@ -31,9 +31,6 @@ public abstract class TabHolderGridFragment<T extends HeaderGridView> extends Ta
 
     @Override
     public void adjustScroll(int scrollHeight) {
-        if (scrollHeight == 0 && mRootScrollingView.getFirstVisiblePosition() >= 1) {
-            return;
-        }
-        mRootScrollingView.setSelectionFromTop(1, scrollHeight);
+        mRootScrollingView.setSelectionFromTop(0, scrollHeight - getHeaderHeight());
     }
 }
