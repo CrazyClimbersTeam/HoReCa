@@ -1,21 +1,22 @@
 package com.crazyclimbersteam.horeca.activity.detail.fragment.info;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.alexmirash.parallaxheaderviewpager.fragment.TabHolderScrollFragment;
 import com.crazyclimbersteam.horeca.R;
 import com.crazyclimbersteam.horeca.activity.MenuActivity;
 import com.crazyclimbersteam.horeca.activity.detail.DetailsActivity;
-import com.crazyclimbersteam.horeca.activity.detail.fragment.DetailsTabFragment;
+import com.crazyclimbersteam.horeca.activity.detail.IDetailDataProvider;
+import com.crazyclimbersteam.horeca.activity.detail.dataprovider.DetailsDataProvider;
 import com.crazyclimbersteam.horeca.activity.detail.fragment.info.view.DetailsInfoContactsView;
 import com.crazyclimbersteam.horeca.fragment.detail.RequestSearchFragment;
 import com.crazyclimbersteam.horeca.net.pojo.DetailItemModel;
@@ -30,32 +31,42 @@ import com.google.android.gms.maps.model.LatLng;
 /**
  * @author Mirash
  */
-public class DetailsInfoFragment extends DetailsTabFragment {
+public class DetailInfoFragment extends TabHolderScrollFragment<ScrollView> implements IDetailDataProvider {
     private TextView mTitleTextView;
     private TextView mContentTextView;
     private RatingBar mRatingBarView;
-    private ImageView mMapPreview;
     private DetailsInfoContactsView mContactsView;
-    private View mMenuButton;
 
     private MapView mapView;
     private GoogleMap map;
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.details_tab_info, container, false);
-        initViews(rootView, savedInstanceState);
-        applyData();
-        return rootView;
+    protected ScrollView createRootScrollView(LayoutInflater inflater) {
+        return new ScrollView(getActivity());
     }
 
-    private void initViews(View rootView, Bundle savedInstanceState) {
+    @Override
+    protected View createViewContent(LayoutInflater inflater, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.details_tab_info, null);
         mTitleTextView = (TextView) rootView.findViewById(R.id.details_info_title);
         mContentTextView = (TextView) rootView.findViewById(R.id.details_info_description);
         mRatingBarView = (RatingBar) rootView.findViewById(R.id.details_info_rating_bar);
         mContactsView = (DetailsInfoContactsView) rootView.findViewById(R.id.details_info_contacts_view);
         initMenuButton(rootView);
         initMap(rootView, savedInstanceState);
+        applyData();
+        return rootView;
+    }
+
+    //TODO
+    private void applyData() {
+        if (getDataProvider().getDetailItem() != null) {
+            DetailItemModel itemModel = getDataProvider().getDetailItem();
+            mTitleTextView.setText(itemModel.getName());
+            mContactsView.setPhone(itemModel.getTelephone());
+            mContactsView.setAddress(itemModel.getAddress());
+        }
     }
 
     private void initMenuButton(View rootView) {
@@ -68,16 +79,6 @@ public class DetailsInfoFragment extends DetailsTabFragment {
                 startActivity(menuActivityIntent);
             }
         });
-    }
-
-    //TODO
-    private void applyData() {
-        if (mDataProvider.getDetailItem() != null) {
-            DetailItemModel itemModel = mDataProvider.getDetailItem();
-            mTitleTextView.setText(itemModel.getName());
-            mContactsView.setPhone(itemModel.getTelephone());
-            mContactsView.setAddress(itemModel.getAddress());
-        }
     }
 
     private void initMap(View v, Bundle savedInstanceState) {
@@ -141,4 +142,9 @@ public class DetailsInfoFragment extends DetailsTabFragment {
         mapView.onLowMemory();
     }
 
+    @Override
+    public DetailsDataProvider getDataProvider() {
+        Activity activity = getActivity();
+        return ((IDetailDataProvider) activity).getDataProvider();
+    }
 }

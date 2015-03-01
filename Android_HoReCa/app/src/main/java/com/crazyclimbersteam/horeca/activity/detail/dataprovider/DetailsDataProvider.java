@@ -108,11 +108,17 @@ public class DetailsDataProvider extends DetailsDataObservable {
     //random data generator
     private List<FeedbackItemModel> creteRandomFeedbackItemModel() {
         List<FeedbackItemModel> itemModels = new ArrayList<>();
+        itemModels.add(null);
         itemModels.add(new FeedbackItemModel("nice one!", "Mirash", 5));
         itemModels.add(new FeedbackItemModel("what!", "m0r0", 3));
         itemModels.add(new FeedbackItemModel("de!", "dRon", 2));
         itemModels.add(new FeedbackItemModel("it's so awesome!", "Den", 5));
         itemModels.add(new FeedbackItemModel("i will never go there again", "Ololo", 1));
+        Random random = new Random();
+        int count = 10 + random.nextInt(100);
+        for (int i = 0; i < count; i++) {
+            itemModels.add(new FeedbackItemModel("Comment " + i, "Name " + i, random.nextInt(6)));
+        }
         return itemModels;
     }
 

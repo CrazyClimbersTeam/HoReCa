@@ -1,4 +1,4 @@
-package com.crazyclimbersteam.horeca.activity.detail;
+package com.crazyclimbersteam.horeca.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;

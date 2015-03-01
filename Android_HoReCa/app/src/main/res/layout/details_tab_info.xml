@@ -1,98 +1,92 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="@dimen/detail_info_page_padding"
     >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        >
+        <TextView
+            android:id="@+id/details_info_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/details_tab_info_title_text_size"
+            android:textColor="@color/detail_info_title_text_color"
+            android:layout_marginLeft="18dp"
+            android:text="HoReC Bar"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            />
+        <RatingBar
+            android:id="@+id/details_info_rating_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:isIndicator="true"
+            style="@android:style/Widget.Holo.RatingBar.Small"
+            />
+    </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/menu_item_separator_color"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/detail_info_page_padding"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
         >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            >
-            <TextView
-                android:id="@+id/details_info_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/details_tab_info_title_text_size"
-                android:textColor="@color/detail_info_title_text_color"
-                android:layout_marginLeft="18dp"
-                android:text="HoReC Bar"
-                android:textStyle="bold"
-                android:layout_centerVertical="true"
-                />
-            <RatingBar
-                android:id="@+id/details_info_rating_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="16dp"
-                android:isIndicator="true"
-                style="@android:style/Widget.Holo.RatingBar.Small"
-                />
-        </RelativeLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/menu_item_separator_color"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            />
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_weight="0.6"
+            android:layout_width="0dp"
+            android:orientation="vertical"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
             >
-
-            <LinearLayout
-                android:layout_weight="0.6"
-                android:layout_width="0dp"
-                android:orientation="vertical"
+            <com.crazyclimbersteam.horeca.activity.detail.fragment.info.view.DetailsInfoContactsView
+                android:id="@+id/details_info_contacts_view"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                >
-                <com.crazyclimbersteam.horeca.activity.detail.fragment.info.view.DetailsInfoContactsView
-                    android:id="@+id/details_info_contacts_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-                <Button
-                    android:id="@+id/detail_info_menu_section"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center"
-                    android:textSize="17dp"
-                    android:text="@string/menu"
-                    android:textColor="@drawable/navigation_menu_item_text_selector"
-                    android:drawableLeft="@drawable/menu_icon"
-                    android:background="?attr/selectableItemBackground"
-                    />
-            </LinearLayout>
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/mapview"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="0.4"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                />
+            <Button
+                android:id="@+id/detail_info_menu_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="17dp"
+                android:text="@string/menu"
+                android:textColor="@drawable/navigation_menu_item_text_selector"
+                android:drawableLeft="@drawable/menu_icon"
+                android:background="?attr/selectableItemBackground"
                 />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/details_info_description"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/details_tab_info_text_size"
-            android:textColor="@color/detail_info_text_color"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dui risus, elementum eu pulvinar ac, tempus porta magna. Etiam tempus nec dolor vitae fermentum. Pellentesque arcu turpis, volutpat et laoreet vitae, dapibus eu nunc. Phasellus nec viverra felis. Curabitur imperdiet, tellus non venenatis consequat, neque magna pellentesque est, nec consectetur velit ex vitae nibh. Morbi volutpat libero vitae dapibus pulvinar. Aenean risus leo, gravida et volutpat malesuada, vehicula vel purus. Quisque ut mi non sem volutpat fringilla eu a leo. Vivamus lorem nulla, scelerisque nec sapien sit amet, tempus aliquet massa. Etiam sagittis augue massa, at maximus neque mollis non. Aliquam blandit augue leo, ac blandit risus elementum non. Suspendisse ornare ligula lacinia fringilla porta. Suspendisse potenti. Sed sed ligula et lacus gravida posuere. Sed pretium porttitor euismod.
-
-Phasellus mollis vel erat ac vestibulum. Ut sagittis a dolor a fermentum. Aliquam pretium eu felis fermentum efficitur. Nullam non justo eros. Etiam pellentesque nisl nisl, et pretium ligula aliquam at. Praesent finibus ultrices risus, vel malesuada mi porttitor euismod. Vivamus vulputate, risus et pulvinar dapibus, dui risus faucibus ligula, eget maximus ligula urna non lorem. Etiam vel orci nec nulla rutrum tristique in ac velit. Phasellus ipsum nisl, consectetur sit amet tempor id, cursus a dolor. Mauris suscipit tincidunt eros, in gravida nulla sagittis nec. Morbi mollis non dolor a suscipit. Curabitur fermentum dolor ac mauris finibus, et molestie urna pretium. In auctor lorem et risus efficitur accumsan vel quis ante. Pellentesque eros dolor, aliquet a purus non, euismod feugiat ex. Donec venenatis dolor vitae eros mollis pharetra."
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapview"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             />
     </LinearLayout>
-</ScrollView>
+
+    <TextView
+        android:id="@+id/details_info_description"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/details_tab_info_text_size"
+        android:textColor="@color/detail_info_text_color"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dui risus, elementum eu pulvinar ac, tempus porta magna. Etiam tempus nec dolor vitae fermentum. Pellentesque arcu turpis, volutpat et laoreet vitae, dapibus eu nunc. Phasellus nec viverra felis. Curabitur imperdiet, tellus non venenatis consequat, neque magna pellentesque est, nec consectetur velit ex vitae nibh. Morbi volutpat libero vitae dapibus pulvinar. Aenean risus leo, gravida et volutpat malesuada, vehicula vel purus. Quisque ut mi non sem volutpat fringilla eu a leo. Vivamus lorem nulla, scelerisque nec sapien sit amet, tempus aliquet massa. Etiam sagittis augue massa, at maximus neque mollis non. Aliquam blandit augue leo, ac blandit risus elementum non. Suspendisse ornare ligula lacinia fringilla porta. Suspendisse potenti. Sed sed ligula et lacus gravida posuere. Sed pretium porttitor euismod.
+
+Phasellus mollis vel erat ac vestibulum. Ut sagittis a dolor a fermentum. Aliquam pretium eu felis fermentum efficitur. Nullam non justo eros. Etiam pellentesque nisl nisl, et pretium ligula aliquam at. Praesent finibus ultrices risus, vel malesuada mi porttitor euismod. Vivamus vulputate, risus et pulvinar dapibus, dui risus faucibus ligula, eget maximus ligula urna non lorem. Etiam vel orci nec nulla rutrum tristique in ac velit. Phasellus ipsum nisl, consectetur sit amet tempor id, cursus a dolor. Mauris suscipit tincidunt eros, in gravida nulla sagittis nec. Morbi mollis non dolor a suscipit. Curabitur fermentum dolor ac mauris finibus, et molestie urna pretium. In auctor lorem et risus efficitur accumsan vel quis ante. Pellentesque eros dolor, aliquet a purus non, euismod feugiat ex. Donec venenatis dolor vitae eros mollis pharetra."
+        />
+</LinearLayout>

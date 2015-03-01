@@ -3,42 +3,33 @@ package com.crazyclimbersteam.horeca.activity.detail;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
+import com.alexmirash.parallaxheaderviewpager.view.ParallaxHeaderPagerView;
 import com.crazyclimbersteam.horeca.R;
-import com.crazyclimbersteam.horeca.activity.detail.adapter.DetailsAdapter;
+import com.crazyclimbersteam.horeca.activity.detail.adapter.DetailsPagerAdapter;
 import com.crazyclimbersteam.horeca.activity.detail.dataprovider.DetailsDataProvider;
-import com.crazyclimbersteam.horeca.activity.detail.view.DetailContentView;
 import com.crazyclimbersteam.horeca.activity.detail.view.DetailHeaderView;
 import com.crazyclimbersteam.horeca.net.pojo.DetailItemModel;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.crazyclimbersteam.horeca.utils.LogUtils.log;
 
 /**
  * @author Mirash
  */
-public class DetailsActivity extends ActionBarActivity implements DetailContentView.IDetailCallbacks {
+public class DetailsActivity extends ActionBarActivity implements IDetailDataProvider {
     public static String TAG = DetailsActivity.class.getSimpleName();
-    public static final int DETAIL_SCREENS_COUNT = 3;
     public static final String ITEM_DETAIL_KEY = "item_details";
 
-    private DetailContentView mContentView;
-    private DetailHeaderView mHeaderView;
-
     private DetailsDataProvider mDataProvider;
+    private ParallaxHeaderPagerView mPagerView;
+    private View mHeaderView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details_activity_layout);
-        mContentView = (DetailContentView) findViewById(R.id.details_content);
-        mHeaderView = (DetailHeaderView) findViewById(R.id.details_header);
-        initContentView();
+        initParallaxHeaderPagerView();
         initDataProvider();
-//        initScrollContainer();
-
         Bundle extra = getIntent().getExtras();
         if (extra != null) {
             DetailItemModel itemModel = (DetailItemModel) extra.getSerializable(ITEM_DETAIL_KEY);
@@ -70,29 +61,35 @@ public class DetailsActivity extends ActionBarActivity implements DetailContentV
         mDataProvider.updateAllData();
     }
 
-    private void initContentView() {
-        List<String> titles = new ArrayList<>(DETAIL_SCREENS_COUNT);
-        titles.add(getString(R.string.details_info_tab_title));
-        titles.add(getString(R.string.details_feedback_tab_title));
-        titles.add(getString(R.string.details_photos_tab_title));
-        mContentView.setPagerAdapter(new DetailsAdapter(getSupportFragmentManager(), titles));
-        mContentView.setCallbacksListener(this);
-    }
-
-/*    private void initScrollContainer() {
-        final ScrollView scrollView = (ScrollView) findViewById(R.id.details_scroll_container);
-        final float headerHeight = getResources().getDimension(R.dimen.details_screen_header_height);
-        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+    private void initParallaxHeaderPagerView() {
+        mPagerView = (ParallaxHeaderPagerView) findViewById(R.id.detail_parallax_header_pager_view);
+        mPagerView.setPagerAdapter(new DetailsPagerAdapter(getSupportFragmentManager()));
+        mHeaderView = createHeaderView();
+        mPagerView.setHeaderView(mHeaderView, getResources().getDimensionPixelSize(R.dimen.details_screen_header_height));
+        mPagerView.setMinHeaderHeight(getResources().getDimensionPixelSize(R.dimen.tab_height_default));
+        mPagerView.setHeaderParallaxWidth(getResources().getDimension(R.dimen.details_screen_header_parallax_margin));
+        mPagerView.setCallbacks(new ParallaxHeaderPagerView.ICallbacks() {
             @Override
-            public void onScrollChanged() {
-                int scrollY = scrollView.getScrollY();
-                log("scroll = " + scrollY);
-                if (scrollY < headerHeight) {
-                    mHeaderView.setTopOffset(scrollY);
-                }
+            public void onVerticalScroll(float ratio) {
+            }
+
+            @Override
+            public void onPageScrolled(int position, float pageRatio, int scrollX, float totalRatio) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
             }
         });
-    }*/
+    }
+
+    private View createHeaderView() {
+        View view = new View(this);
+        view.setBackground(getResources().getDrawable(R.drawable.test_image_space));
+        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                getResources().getDimensionPixelSize(R.dimen.details_screen_header_height)));
+        return view;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -106,16 +103,6 @@ public class DetailsActivity extends ActionBarActivity implements DetailContentV
     }
 
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        log("onPageScrolled: " + position + ", " + positionOffset + ", " + positionOffsetPixels);
-        mHeaderView.setLeftOffset(position + positionOffset);
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-
-    }
-
     public DetailsDataProvider getDataProvider() {
         return mDataProvider;
     }
