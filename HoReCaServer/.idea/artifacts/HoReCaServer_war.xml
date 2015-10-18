@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="HoReCaServer:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="HoReCaServer.war">
-      <element id="artifact" artifact-name="HoReCaServer:war exploded" />
-    </root>
-  </artifact>
-</component>
